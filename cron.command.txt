@@ -1,0 +1,1 @@
+find /export/data/web/metaamp/tmp -type d -mtime +7 -maxdepth 1 -exec rm -r {} \;

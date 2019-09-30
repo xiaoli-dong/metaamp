@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta NAME ="Description" CONTENT ="Energy Bioengineering Research Group bioinformatics tool metaamp: metagenomic amplicon gene such as 16s rRNA, 18s rRNA gene analysis. accepts next generation sequences (454, Illumina single or paired end  reads) , generate ">
+    <meta NAME ="Keywords" CONTENT ="Next generation sequencing, 454, MiSeq, Paired end, 16s rRNA, 18s rRNA, OTU, taxonomic classification, clustering, alpha diversity, beta diversity, community comparison, University of Calgary,Geoscience,Energy Bioengineering Group, Xiaoli Dong,Marc Strous">
+
+   <link rel=stylesheet type="text/css" href="/metaamp/css/metaamp.css" title="default metaamp styles" />
+
+  <title>MetaAmp - metagenomic 16s, 18s rRNA data analysis Help</title>
+
+</head>
+
+<body>
+  <div id="outform">
+    <a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
+
+    <h1>MetaAmp Version 2.0 - Help</h1>
+
+    <div id="pwraper">
+      <div id="sep"></div>
+      <p>MetaAmp can take single-read or paired-end 16s/18s rRNA sequencing in fasta or fastq format. When the input sequence files are in fasta format, providing corresponding quality files will help to get a better analysis results although you can still conduct the analysis without quality files</p>
+      <p>Mock community testing data set is available at: <a href="/metaamp/html/download.html">download page</a>.
+      <p>MetaAmp source code can be download from <a href="http://ebg.ucalgary.ca/metaamp/html/download.html">download page</a> for local installation to run as web service or command line on linux platform.</p>
+      <p>MetaAmp are using a few third party software and database for quality control, producing diversity index, and taxonomic assignment.The database and software versions used for the current verion of MetaAmp are listed as below:
+      <ul style="margin-left: 10px;">
+	<li>Mothur version: 1.39.5;</li>
+	<li>Usearch version: 9.0.2132;</li>
+	<li>SILVA databse version: v132</li>
+      </ul>
+      </p>
+      <p>We are keeping updating metaamp to keep up with the latest methods and user request. Please check the <a href="/metaamp/html/changelog.html">MetaAmp Update Page</a> for the new features </p>
+
+      <p><b>"oligos.txt"</b> and <b>"design.txt"</b> file names are reserved by the program and please avoid naming your sequence and mapping files with the same names.</p>
+
+
+      <h2>Analysis Name:</h2>
+      The analysis name is a required field and only takes <b>letters, numeric digits, underscores.</b> No spaces are allowed in the analysis name.
+
+      <h2>Email address</h2>
+      The email address is a required field. MetaAmp uses the email address to notify user the occuring errors during the analysis and to send the result link to user after the analysis finishes. Please provide a valid email address.
+
+      <h2>Sequence format</h2>
+      MetaAmp can take either <b><a href="http://en.wikipedia.org/wiki/FASTA_format">fasta</a> or <a href="http://en.wikipedia.org/wiki/FASTQ_format">fastq</a> </b> format sequence files as inputs for the analysis
+
+      <h2>Sequencing type</h2>
+      The amplicon sequences can be <b>single-read or paired-end </b>sequencing
+
+      <h2>Upload archived sequence file (demultiplexed):</h2>
+      <p>The archive contains <b>the demultiplexed and uncompressed fastq or fasta format sequence files.</b></p>
+      <p>
+	<ul>
+	  <li>When the sequences are in <b>"fastq"</b> format, the file name extension must be <b>".fastq"</b>.</li>
+	  <li>The interleaved fastq format files for paired-end sequencing are not supported. The paired-end read1 and read2 files must be in the seperated files.</li>
+	  <li>When the sequences are in <b>"fasta"</b> format, the file name extensions must be <b>".fna" </b> or <b>".fasta"</b> for sequence files and <b>".qual"</b> for quality files.</li>
+	  <li>Providing quality files for the fasta format sequences will help to get better analysis results. When the quality files are supplied, the pairs of the fasta and quality files indicated by two file names differing only in their extensions.</li>
+
+	  <li> The compressed archived file can speed up the file uploading. The archive formats below are supported:
+	    <ul>
+	      <li>zip: Zip compressed file (.zip, .jar or .par)</li>
+	      <li>tgz: Gzip compressed tar file (.tgz or .tar.gz)</li>
+	      <li>tar: Standard tar file (.tar)</li>
+	      <li>tbz: Bzip2 compressed tar file (.tbz or .tar.bz2)</li>
+	      <li>txz: Xz compressed tar file (.txz or .tar.xz)</li>
+	      <li>gz: Gzip compressed file (.gz)</li>
+	      <li>Z: Lempel-Ziv compressed file (.Z)</li>
+	      <li>bz2: Bzip2 compressed file (.bz2)</li>
+	      <li>xz: Xz compressed file (.xz)</li>
+	      <li>lzma: Lzma compressed file (.lzma)</li>
+	    </ul>
+	  </li>
+	</ul>
+      </p>
+      <h2>Upload mapping file:</h2>
+
+      <p>
+	<ul>
+	  <li>The mapping file is a space-delimlited text file (do not use word to produce the mapping file) and has <b>four columns</b> for the single-end sequencing and <b>five columns</b> for the paired-end sequencing.In the mapping file:
+
+	<ul>
+	  <li>The columns in the mapping file are space separated.</li>
+	  <li>The sample name must be unique and can only contain characters, numbers and underscore [a-zA-z0-9_]. No spaces and no hyphens are allowed in the sample name and also a smaple name cannot start with nubmers.</li>
+	  <li>The Strand column accepts "+|-" signs. It's orientation of the amplicon sequence in read 1 file.</li>
+	  <li>It's having 4 columns for single end sequencing and 5 columns for the paired end sequencing</li>
+	  <li>Each or each pair of the sequencing files can only belong to one sample</li>
+	  <li>Please group your samples by treatments ( for example control vs. disease, time_0 vs. time_1week). This is very important for the hypothesis test. From time to time, I have seen users just copied sample name column to the treatment column. The MetaAmp will still run but the statistical testing result will not make sense at all. </li>
+	</ul>
+     	  </li>
+	  <li>A paired-end sequencing mapping file example is as following. In the mapping file, the first line is the header line is optional. It must start with the sharp chararter "#".
+	    <img src="../images/mapping_example.jpg" alt="MetaAmp paired-end sequencing mapping file example"></li>
+	  <li>A single-end sequencing mapping file is as following. It is very similar to the paired-end mapping file but it only has four columns.
+	    <img src="../images/mapping_example_single.jpg" alt="MetaAmp single-end seuqnecing mapping file example"></li>
+	  </li>
+	</ul>
+      </p>
+
+
+      <h2>Forward and reverse primers:</h2>
+      <p>
+	<ul>
+	  <li>The primers are the amplicon primers (not adapter, sequencing primer) and the orientations are from 5' to 3'</li>
+	  <li>The forward and reverse primers can also be degenerate using standard IUPAC nomenclature.</li>
+          <li>Primers can be upper or lower case letters.</li>
+          <li>multiple forward/reverse primers must be entered in the separate lines in the box.</li>
+	  <li>For the paired-end sequencing, the forward primers are the primers you used to generated your R1 read, the reverse primers are the primers you used to generate R2 reads.</li>
+	  <li>For the single-read sequencing, the forward primers are best thought of as the forward sequencing primer. So if you are using the 16S rRNA primers 27f and 338r to generate sequencing substrate, but you are sequencing off of the 338r end of the fragment, you would list 338r as the forward primer and 27f as the reverse. If your target region is longer than the length which your sequencing platform can generate, you should leave the reverse primer box as empty, in this way, you are telling the program to only screen the primer at the front. </li>
+
+      	</ul>
+      </p>
+
+      <h2>Marker Gene Type:</h2>
+      <p>
+	MetaAmp can analyze both ssu rRNA genes and the other taxonomic marker genes. However, the taxonomic profile will only be provided for the ssu rRNA gene analysis but not other genes.
+	<ul>
+	  <li><b>rRNA Gene</b>: the input sequences are the ssu rRNA genes</li>
+	  <li><b>non-rRNA gene</b>: the input sequences are not ssu rRNA genes</li>
+	</ul>
+      </p>
+
+      <h2>Similarity cutoff:</h2>
+<p>
+	This is the OTU clustering threshold. 0.97 mean 97% identity. This is default cutoff and usually it works great.
+</p>
+
+<h2>Paired-end sequencing merging options</h2>
+
+<p>For the paired-end sequencing analysis, paired-end read pair will be merged before doing analysis.
+  <ul>
+    <li><b>Minimum length of the overlap:</b> it defines that the read pairs whose overlaps are shorter than this option will fail to align. The default value for this option is 50</li>
+    <li><b>Maximum mismatches in the overlap region:</b> it defines the number of the mismatches are allowed in the overlap region during merging. The read pairs whose mismatch number are bigger than this option will fail to align. The default value for this option is 0.</li>
+  </ul>
+</p>
+<h2>Quality filtering options:</h2>
+<p>MetaAmp defines the quality control threshold through the following fields:
+
+  <ul>
+    <li><b>Maximum number of differences to the primer sequence:</b> this parameters is used to allow differences in the primer. The default value is 0. </li>
+    <li><b>Maximum number of expected errors:</b> default value is 1.0. It indicates that on average 1 nucleotides were incorrectly assigned in every sequence. Please visit <a href="http://drive5.com/usearch/manual/exp_errs.html">maxee</a> link to see how to configure this option</li>
+    <li><b>Trim amplicon to a fixed length:</b> for the single-read sequencing, trimming the quality controlled reads to a fixed position is critically important for achieving the best results because the clustering algorithm considers all gaps to be differences, including terminal gaps. The length should be propotional to your sequencing target region length (the region length between your forward and reverse primer)</li>
+    </ul>
+
+</p>
+      <h2>Tips for big dataset analysis:</h2>
+
+      <p>The big dataset takes longer time to upload and process. The best way for it is to randomly select a few samples from your whole dataset and run through the pipeline. The pipeline may only take a few minutes to finish for smaller dataset. Then you take a look at the "QC summary" in the result page to see whehter the paramters used in your analysis is optimized or not. You may twist the paramters and run the dataset several times util you are satisfied with your results and then upload the whole dataset.</p>
+
+      <h2>Example output pages:</h2>
+<p>
+  <ul>
+    <li>Visualization examples:
+      <p>
+	<img src="../images/metaamp_vis.jpg" align="center" alt="MetaAmp result download page" border=2>
+      </p>
+    </li>
+    <li>Analysis result download page:
+      <p>
+	<img src="../images/metaamp_download.jpg" align="center" alt="MetaAmp result download page" border=2>
+      </p>
+    </li>
+    <li>Quality control summary page
+
+      <p><img src="../images/metaamp_qc.jpg" alt="MetaAmp result download page" border=2>
+      </p>
+    </li>
+    <li>OTU page:
+      <p>
+	<img src="../images/metaamp_otu.jpg" alt="MetaAmp result download page" border=2>
+    </p></li>
+
+    <li>alpha and beta diversity page:
+      <p><img src="../images/metaamp_diversity.jpg" alt="MetaAmp result download page" border=2></p></li>
+
+    <li>Hypothesis testing page:
+      <p>
+	<img src="../images/metaamp_hyp.jpg" alt="MetaAmp result download page" border=2></p></li>
+  </ul>
+</p>
+
+ <div id="sep"></div>
+
+
+    </div>
+
+    <div id="foot">
+      Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a>
+    </div>
+    <div>
+
+      <script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-56835302-1', 'auto');
+	ga('send', 'pageview');
+
+      </script>
+    </div>
+  </div>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90098813-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>

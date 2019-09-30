@@ -1,0 +1,2 @@
+00 1 * * * find /gpfs/ebg_web/metaamp/tmp/* -type d -mtime +14 -exec rm -rf {} \;
+

@@ -1,0 +1,148 @@
+<html lang="en">
+
+<head>
+    <title>Rarefaction curves</title>
+    <meta charset="utf-8" />
+    <link rel=stylesheet type="text/css" href="http://ebg.ucalgary.ca/metaamp/css/metaamp.css"
+    title="default metaamp styles" />
+    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/highcharts.js"></script>
+    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/exporting.js"></script>
+    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/data.js"></script>
+    <script type="text/javascript">
+        $.get('ebgmetaamptsv', function (csv) {
+            $('#rarefaction')
+                .highcharts({
+                    colors: ['#0000ff', '#008080', '#ED561B',
+                        '#00FF00', '#8000000', '#FF0000',
+                        '#00FFFF'
+                    ],
+                    chart: {
+                        type: 'line',
+                        borderWidth: 2,
+                        spacingLeft: 20,
+                        spacingRight: 20,
+                        spacingTop: 20,
+                        spacingBottom: 20,
+                        borderWidth: 2,
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 1,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, 'rgb(255, 255, 255)'],
+                                [1, 'rgb(240, 240, 255)']
+                            ]
+                        },
+                        plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+                        plotShadow: true,
+                        plotBorderWidth: 1
+                    },
+                    data: {
+                        csv: csv,
+                        complete: function (option) {
+                            $.each(option.series, function () {
+                                if (this.name.match(
+                                        /hci|lci/)) {
+                                    this.data = [];
+                                    //alert(this.name);
+                                    //alert(this.data);
+                                    //this.hide();
+                                }
+                            });
+                        }
+                    },
+                    title: {
+                        text: 'Rarefaction Curves',
+                        margin: 30,
+                        style: {
+                            color: '#000',
+                            font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                        }
+                    },
+                    xAxis: {
+                        gridLineWidth: 1,
+                        lineColor: '#000',
+                        tickColor: '#000',
+                        labels: {
+                            style: {
+                                color: '#000',
+                                font: '11px Trebuchet MS, Verdana, sans-serif'
+                            }
+                        },
+                        title: {
+                            text: 'Number of reads sampled',
+                            style: {
+                                color: '#333',
+                                fontWeight: 'bold',
+                                fontSize: '12px',
+                                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                            }
+                        }
+                    },
+                    yAxis: {
+                        minorTickInterval: 'auto',
+                        lineColor: '#000',
+                        lineWidth: 1,
+                        tickWidth: 1,
+                        tickColor: '#000',
+                        labels: {
+                            style: {
+                                color: '#000',
+                                font: '11px Trebuchet MS, Verdana, sans-serif'
+                            }
+                        },
+                        title: {
+                            text: 'Number of observed OTUs',
+                            style: {
+                                color: '#333',
+                                fontWeight: 'bold',
+                                fontSize: '12px',
+                                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            marker: {
+                                enabled: false,
+                                radius: 3,
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                enabled: true,
+                                headerFormat: '<b>{series.name}</b><br/>',
+                                pointFormat: '{point.x},{point.y}'
+                            }
+                        }
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                })
+        });
+    </script>
+</head>
+
+<body bgcolor="#ffffff">
+    <div id="outform"> <a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
+        <h1>MetaAmp Version 2.0 </h1>
+        <div id="sep"></div>
+        <div id="space"></div>
+        <div id="result">
+            <div id="rarefaction" style="width:70%; margin-left: auto; margin-right:auto;"></div>
+            <div id="space"></div>
+            <div id="sep"></div>
+            <div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong\@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous\@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a></div>
+        </div>
+</body>
+
+</html>

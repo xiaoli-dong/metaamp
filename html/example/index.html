@@ -1,0 +1,1066 @@
+<html lang=”en”>
+   <head>
+      <meta charset="utf-8">
+      <title>MetaAmp Results Page</title>
+      <link rel="stylesheet" href="/metaamp/css/metaamp.css">
+      <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+      <link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+      <script>
+      function help(divid, btnid, closeid){
+	  // Get the modal
+	      var modal = document.getElementById(divid);
+	  modal.style.display = "block";
+
+	  // Get the button that opens the modal
+	      var btn = document.getElementById(btnid);
+
+	  // Get the <span> element that closes the modal
+	      var span = document.getElementById(closeid);
+
+	  // When the user clicks the button, open the modal
+	      btn.onclick = function() {
+		  modal.style.display = "block";
+	  }
+
+	  // When the user clicks on <span> (x), close the modal
+	      span.onclick = function() {
+		  modal.style.display = "none";
+	  }
+
+	  // When the user clicks anywhere outside of the modal, close it
+	      window.onclick = function(event) {
+		  if (event.target == modal) {
+			  modal.style.display = "none";
+		  }
+	  }
+  }
+      </script>
+
+      <script>
+         $(document).ready(function() {
+         $('article.tabs').tabs();
+
+         $('#qcstats').dataTable(
+         {
+         bJQueryUI:false,
+         sPaginationType: "full_numbers"
+
+         });
+
+	 $('#trimstats').dataTable(
+         {
+
+         bJQueryUI:false,
+         sPaginationType: "full_numbers"
+
+         });
+	 $('#mergestats').dataTable(
+         {
+
+         bJQueryUI:false,
+         sPaginationType: "full_numbers"
+
+         });
+
+         $('#rawstats').dataTable(
+         {
+
+
+         bJQueryUI:false,
+         sPaginationType: "full_numbers"
+
+         });
+         });
+      </script>
+   </head>
+
+    <body>
+	<div id="outform">
+	<a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
+
+	<h1>MetaAmp Version 2.0 Results</h1>
+	<div id="sep"></div>
+	<div style="height: 20px; "></div>
+	<div>
+	<p>Click the Download tab to download the results to browse it offline. We only keeps the results on the server for a week</p>
+	<p>Or click the other tabs to browse the result online</b></p>
+      </div>
+      <section>
+      <article id="tabs-nohdr" class="tabs">
+      <ul>
+      <li><a href="#tabs-nohdr-1">Download</a></li>
+      <li><a href="#tabs-nohdr-2">QC Summary</a></li>
+      <li><a href="#tabs-nohdr-3">OTU & Taxonomy</a></li>
+      <li><a href="#tabs-nohdr-5">&alpha;,&beta;-Diversity</a></li>
+      <li><a href="#tabs-nohdr-6">Hypothesis Testing</a></li>
+
+      </ul>
+    <div id="tabs-nohdr-1">
+	<p><b>MetaAmp analysis results:</b></p>
+	<p> Analysis name: xiaoli_test_v2</p>
+	<p>Parameters for running metaamp: /export/data/web/metaamp/bin/metaamp.pl -map MappingFile_Metaamp.txt -g rRNA -an xiaoli_test_v2 -seqtype paired -seqformat fastq -s 0.97 -minoverlen 50 -maxdiffs 8  -trunclen 350 -maxee 1 -oligos oligos.txt -pdiffs 0 -email xdong@ucalgary.ca
+</p>
+	<p>Submitted by xdong@ucalgary.ca at Thu Jan 5 15:18:12 MST 2017</p>
+	<p class="thick"><a href="../results.zip">Download a packaged file containing all results in this page</a></p>
+	</div>
+
+    <div id="tabs-nohdr-2">
+	<p class="thick"><a href="QC/xiaoli_test_v2.qc.summary.txt">Download reads quality control summary in text format</a></p>
+	<h4>QC Reads Statistical Summary</h4>
+	<hr/>
+	<div style="height: 20px; "></div>
+	<table id="qcstats" class="cell-border" width="85%" cellspacing="0">
+	<thead>
+                     <tr>
+                        <th>Name</th>
+                         <th>Count</th>
+			 <th>Percent%</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                        <th>Mean</th>
+                        <th>Median</th>
+			<th>STD</th>
+                        <th>Total bases</th>
+			</tr>
+                  </thead>
+                  <tbody>
+<tr class="tr_result">
+<td> Pooled Sample</td>
+<td>129,284</td>
+<td>25.12</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>45,249,400</td>
+</tr>
+<tr class="tr_result">
+<td>U4</td>
+<td>10,244</td>
+<td>24.12</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>3,585,400</td>
+</tr>
+<tr class="tr_result">
+<td>P2</td>
+<td>13,095</td>
+<td>26.83</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>4,583,250</td>
+</tr>
+<tr class="tr_result">
+<td>U2</td>
+<td>9,329</td>
+<td>23.71</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>3,265,150</td>
+</tr>
+<tr class="tr_result">
+<td>P1</td>
+<td>5,724</td>
+<td>25.46</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>2,003,400</td>
+</tr>
+<tr class="tr_result">
+<td>U3</td>
+<td>3,381</td>
+<td>22.14</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>1,183,350</td>
+</tr>
+<tr class="tr_result">
+<td>C4</td>
+<td>11,818</td>
+<td>24.57</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>4,136,300</td>
+</tr>
+<tr class="tr_result">
+<td>C1</td>
+<td>8,439</td>
+<td>25.60</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>2,953,650</td>
+</tr>
+<tr class="tr_result">
+<td>C3</td>
+<td>10,688</td>
+<td>24.54</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>3,740,800</td>
+</tr>
+<tr class="tr_result">
+<td>P3</td>
+<td>14,849</td>
+<td>21.98</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>5,197,150</td>
+</tr>
+<tr class="tr_result">
+<td>U1</td>
+<td>11,857</td>
+<td>26.95</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>4,149,950</td>
+</tr>
+<tr class="tr_result">
+<td>P4</td>
+<td>19,411</td>
+<td>27.38</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>6,793,850</td>
+</tr>
+<tr class="tr_result">
+<td>C2</td>
+<td>10,449</td>
+<td>26.68</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>350</td>
+<td>0</td>
+<td>3,657,150</td>
+</tr>
+</tbody>
+</table>
+	<h4>Reads Statistical Summary After Stripping Off The Technical Sequences</h4>
+	    <hr/>
+	    <div style="height: 20px; "></div>
+	    <table id="trimstats" class="cell-border" width="85%" cellspacing="0">
+	    <thead>
+
+	    <tr>
+	    <th>Name</th>
+	    <th>Count</th>
+	    <th>Percent%</th>
+	    <th>Min</th>
+	    <th>Max</th>
+	    <th>Mean</th>
+	    <th>Median</th>
+	    <th>STD</th>
+	    <th>Total bases</th>
+	    </tr>
+
+	    </thead>
+	    <tbody>
+<tr class="tr_result">
+<td>U4</td>
+<td>10,692</td>
+<td>25.18</td>
+<td>161</td>
+<td>429</td>
+<td>420.06</td>
+<td>427</td>
+<td>11.45</td>
+<td>4,491,313</td>
+</tr>
+<tr class="tr_result">
+<td>P2</td>
+<td>13,678</td>
+<td>28.02</td>
+<td>230</td>
+<td>428</td>
+<td>419.46</td>
+<td>427</td>
+<td>11.7</td>
+<td>5,737,361</td>
+</tr>
+<tr class="tr_result">
+<td>U2</td>
+<td>9,760</td>
+<td>24.81</td>
+<td>62</td>
+<td>431</td>
+<td>421.15</td>
+<td>427</td>
+<td>11.3</td>
+<td>4,110,417</td>
+</tr>
+<tr class="tr_result">
+<td>P1</td>
+<td>5,975</td>
+<td>26.58</td>
+<td>398</td>
+<td>428</td>
+<td>419.5</td>
+<td>427</td>
+<td>11.47</td>
+<td>2,506,540</td>
+</tr>
+<tr class="tr_result">
+<td>U3</td>
+<td>3,518</td>
+<td>23.04</td>
+<td>370</td>
+<td>433</td>
+<td>421.9</td>
+<td>427</td>
+<td>10.08</td>
+<td>1,484,231</td>
+</tr>
+<tr class="tr_result">
+<td>C4</td>
+<td>12,396</td>
+<td>25.78</td>
+<td>158</td>
+<td>439</td>
+<td>421.77</td>
+<td>427</td>
+<td>10.63</td>
+<td>5,228,281</td>
+</tr>
+<tr class="tr_result">
+<td>C1</td>
+<td>8,845</td>
+<td>26.83</td>
+<td>345</td>
+<td>456</td>
+<td>422.46</td>
+<td>427</td>
+<td>9.82</td>
+<td>3,736,624</td>
+</tr>
+<tr class="tr_result">
+<td>C3</td>
+<td>11,194</td>
+<td>25.70</td>
+<td>120</td>
+<td>437</td>
+<td>422.22</td>
+<td>427</td>
+<td>10.6</td>
+<td>4,726,365</td>
+</tr>
+<tr class="tr_result">
+<td>P3</td>
+<td>15,493</td>
+<td>22.93</td>
+<td>141</td>
+<td>429</td>
+<td>419.37</td>
+<td>427</td>
+<td>11.95</td>
+<td>6,497,286</td>
+</tr>
+<tr class="tr_result">
+<td>U1</td>
+<td>12,400</td>
+<td>28.18</td>
+<td>13</td>
+<td>429</td>
+<td>420.98</td>
+<td>427</td>
+<td>11.27</td>
+<td>5,220,104</td>
+</tr>
+<tr class="tr_result">
+<td>P4</td>
+<td>20,275</td>
+<td>28.60</td>
+<td>13</td>
+<td>432</td>
+<td>419.93</td>
+<td>427</td>
+<td>12.53</td>
+<td>8,514,018</td>
+</tr>
+<tr class="tr_result">
+<td>C2</td>
+<td>10,908</td>
+<td>27.85</td>
+<td>345</td>
+<td>433</td>
+<td>423.36</td>
+<td>427</td>
+<td>8.99</td>
+<td>4,617,977</td>
+</tr>
+</tbody>
+</table>
+	<h4>Reads Statistical Summary After Merging</h4>
+	    <hr/>
+	    <div style="height: 20px; "></div>
+        <table id="mergestats" class="cell-border" width="85%" cellspacing="0">
+        <thead>
+	<tr >
+	<th>Name</th>
+	<th>Count</th>
+	<th>Percent%</th>
+	<th>Min</th>
+	<th>Max</th>
+	<th>Mean</th>
+	<th>Median</th>
+	<th>STD</th>
+	<th>Total bases</th>
+
+
+	</thead>
+	<tbody>
+<tr class="tr_result">
+<td>U4</td>
+<td>12,687</td>
+<td>29.87</td>
+<td>50</td>
+<td>505</td>
+<td>455.77</td>
+<td>465</td>
+<td>31.83</td>
+<td>5,782,297</td>
+</tr>
+<tr class="tr_result">
+<td>P2</td>
+<td>16,184</td>
+<td>33.16</td>
+<td>51</td>
+<td>500</td>
+<td>457.26</td>
+<td>465</td>
+<td>13.83</td>
+<td>7,400,294</td>
+</tr>
+<tr class="tr_result">
+<td>U2</td>
+<td>11,577</td>
+<td>29.42</td>
+<td>50</td>
+<td>512</td>
+<td>457.24</td>
+<td>465</td>
+<td>29.84</td>
+<td>5,293,457</td>
+</tr>
+<tr class="tr_result">
+<td>P1</td>
+<td>6,982</td>
+<td>31.06</td>
+<td>53</td>
+<td>502</td>
+<td>457.33</td>
+<td>465</td>
+<td>12.77</td>
+<td>3,193,077</td>
+</tr>
+<tr class="tr_result">
+<td>U3</td>
+<td>4,182</td>
+<td>27.39</td>
+<td>50</td>
+<td>503</td>
+<td>456.55</td>
+<td>465</td>
+<td>39.02</td>
+<td>1,909,290</td>
+</tr>
+<tr class="tr_result">
+<td>C4</td>
+<td>14,593</td>
+<td>30.34</td>
+<td>61</td>
+<td>502</td>
+<td>459.64</td>
+<td>465</td>
+<td>11.51</td>
+<td>6,707,475</td>
+</tr>
+<tr class="tr_result">
+<td>C1</td>
+<td>10,358</td>
+<td>31.43</td>
+<td>50</td>
+<td>502</td>
+<td>460.25</td>
+<td>465</td>
+<td>12.09</td>
+<td>4,767,221</td>
+</tr>
+<tr class="tr_result">
+<td>C3</td>
+<td>13,144</td>
+<td>30.18</td>
+<td>50</td>
+<td>495</td>
+<td>460.02</td>
+<td>465</td>
+<td>12.35</td>
+<td>6,046,448</td>
+</tr>
+<tr class="tr_result">
+<td>P3</td>
+<td>18,345</td>
+<td>27.15</td>
+<td>50</td>
+<td>502</td>
+<td>456.96</td>
+<td>465</td>
+<td>16.27</td>
+<td>8,382,961</td>
+</tr>
+<tr class="tr_result">
+<td>U1</td>
+<td>14,653</td>
+<td>33.31</td>
+<td>51</td>
+<td>495</td>
+<td>458.83</td>
+<td>465</td>
+<td>11.57</td>
+<td>6,723,240</td>
+</tr>
+<tr class="tr_result">
+<td>P4</td>
+<td>23,934</td>
+<td>33.76</td>
+<td>51</td>
+<td>470</td>
+<td>457.73</td>
+<td>465</td>
+<td>12.91</td>
+<td>10,955,340</td>
+</tr>
+<tr class="tr_result">
+<td>C2</td>
+<td>12,779</td>
+<td>32.62</td>
+<td>53</td>
+<td>500</td>
+<td>461.02</td>
+<td>465</td>
+<td>13.19</td>
+<td>5,891,344</td>
+</tr>
+</tbody>
+</table>
+
+    <h4>Raw Reads Statistical Summary</h4>
+        <hr/>
+        <div style="height: 20px; "></div>
+        <table id="rawstats" class="cell-border" width="85%" cellspacing="0">
+        <thead>
+	<tr>
+	<th rowspan=2>Name</th>
+	<th colspan=2>R1</th>
+	<th colspan=2>R2</th>
+	</tr>
+        <tr>
+	<th>Count</th>
+        <th>Total bases</th>
+	<th>Count</th>
+        <th>Total bases</th>
+        </tr>
+        </thead>
+        <tbody>
+<tr class="tr_result">
+<td >U4</td>
+<td>42,470</td>
+<td>12,751,525</td>
+<td>42,470</td>
+<td>12,693,408</td>
+</tr>
+<tr class="tr_result">
+<td >P2</td>
+<td>48,811</td>
+<td>14,685,776</td>
+<td>48,811</td>
+<td>14,596,974</td>
+</tr>
+<tr class="tr_result">
+<td >U2</td>
+<td>39,346</td>
+<td>11,817,370</td>
+<td>39,346</td>
+<td>11,757,629</td>
+</tr>
+<tr class="tr_result">
+<td >P1</td>
+<td>22,480</td>
+<td>6,763,508</td>
+<td>22,480</td>
+<td>6,716,138</td>
+</tr>
+<tr class="tr_result">
+<td >U3</td>
+<td>15,270</td>
+<td>4,574,005</td>
+<td>15,270</td>
+<td>4,528,237</td>
+</tr>
+<tr class="tr_result">
+<td >C4</td>
+<td>48,092</td>
+<td>14,469,800</td>
+<td>48,092</td>
+<td>14,374,778</td>
+</tr>
+<tr class="tr_result">
+<td >C1</td>
+<td>32,961</td>
+<td>9,917,557</td>
+<td>32,961</td>
+<td>9,850,522</td>
+</tr>
+<tr class="tr_result">
+<td >C3</td>
+<td>43,551</td>
+<td>13,104,114</td>
+<td>43,551</td>
+<td>13,031,784</td>
+</tr>
+<tr class="tr_result">
+<td >P3</td>
+<td>67,565</td>
+<td>20,324,864</td>
+<td>67,565</td>
+<td>20,221,452</td>
+</tr>
+<tr class="tr_result">
+<td >U1</td>
+<td>43,996</td>
+<td>13,240,072</td>
+<td>43,996</td>
+<td>13,203,593</td>
+</tr>
+<tr class="tr_result">
+<td >P4</td>
+<td>70,886</td>
+<td>21,332,497</td>
+<td>70,886</td>
+<td>21,274,038</td>
+</tr>
+<tr class="tr_result">
+<td >C2</td>
+<td>39,170</td>
+<td>11,782,257</td>
+<td>39,170</td>
+<td>11,709,167</td>
+</tr>
+</tbody>
+</table>
+</div>
+    <div id="tabs-nohdr-3">
+	<p class="thick">» OTUs</p>
+    <ul id="lfile">
+    <li><a href="OTU_and_taxonomy/xiaoli_test_v2.OTUs.fasta" title="Representative sequence for each OTU:otuid|sequence count" target="vis">OTU representative sequences</a></li>
+
+    </ul>
+	<p class="thick">» Taxonomy annotation</p>
+    <ul id="lfile">
+
+    <li>OTU taxonomic assignment <a href="OTU_and_taxonomy/xiaoli_test_v2.OTUs.nr_v123.mwang.taxonomy" title="The consensus taxonomy of each OTU" target="vis">with</a> and <a href="OTU_and_taxonomy/xiaoli_test_v2.OTUs.nr_v123.mwang.norank.taxonomy" title="The consensus taxonomy of each OTU without rank information" target="vis">without</a> rank</li>
+    <li><a href="OTU_and_taxonomy/xiaoli_test_v2.OTU-table.taxonomy" title="OTU table with taxonomic classifiion" target="vis">OTU table & taxonomic assignment</a></li>
+
+    <li>Taxonomic distribution table <a href="OTU_and_taxonomy/xiaoli_test_v2.taxonomy.summary" title="Taxonomic summary table of the analysis" target="vis">with</a> and <a href="OTU_and_taxonomy/xiaoli_test_v2.taxonomy.norank.summary" title="Taxonomic summary table of the analysis" target="vis">without</a> rank</li>
+
+    </ul>
+
+</div>
+
+
+
+    <div id="tabs-nohdr-5">
+	<div id="wrap">
+	<div id="left_col">
+	<h3> Without subsampling or rarefying</h3>
+	</div>
+	<div id="right_col">
+	<h3> With subsampling or rarefying &nbsp;&nbsp; <input TYPE="button" id="rarefy" class="btn" name="HELP" value="HELP" onclick="help('rarefyModal', 'rarefy', 'closeRarefy');"></h3>
+	</div>
+
+	<div id="rarefyModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+	<span class="close" id="closeRarefy">&times;</span>
+	<p>There's a subtle, but very important, difference between subsampling and rarefaction. Subsampling will draw a desired number of sequences from each sample - once. This is what Mothur do for things like metastats or machine learning models. For alpha and beta diversity, Mothur rarefy the data. This is subsampling 1000 times and averaging the 1000 subsamples. With the large number of randomizations, you average out the effects of getting lucky/unlucky.</p>
+	</div>
+	</div>
+
+	</div>
+	<p class="thick">»  OTU and &alpha;-diversity measurements</p>
+
+    <div id="wrap">
+    <div id="left_col">
+    <ul id="lfile">
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.list" title="Contains data indicating the sequences that cluster together within an OTU" target="vis">Mothur format List file</a><a href="https://www.mothur.org/wiki/List_file" target="vis"><img src="images/help.jpg" height="20" class="help"></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.groups" title="Sequence-to-sample mapping (useful for mothur's beta diversity analysis)" target="vis">Mothur format group file</a><a href="http://www.mothur.org/wiki/Group_file" target="vis"><img src="images/help.jpg" height="20" class="help"></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.shared" title="The data in a shared file represents the number of times that an OTU is observed in multiple samples." target="vis" >Mothur format shared file</a><a href="http://www.mothur.org/wiki/Shared_file" target="vis"><img src="images/help.jpg" height="20" class="help"></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.relabund" title="relabund file represent relative abundance of an OTU over the samples" target="vis" >OTU relabund file</a><a href="http://www.mothur.org/wiki/Shared_file" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.groups.rarefaction" title="Rarefaction curve describing the number of OTUs observed as a function of sampling effort" target="vis">Rarefaction curve</a><a href="http://www.mothur.org/wiki/Rarefaction" target="vis"><img src="images/help.jpg" height="20" class="help"></a><a href="html/xiaoli_test_v2.groups.rarefaction.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+    <li class=""><a href="alpha_and_beta_diversity/xiaoli_test_v2.groups.summary" title="Alpha diversity indices using different calculator" target="vis">Alpha diversity index</a><a href="http://www.mothur.org/wiki/Summary.single" target="vis"><img src="images/help.jpg" height="20" class="help"></a><a href="html/xiaoli_test_v2.groups.summary.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.list" title="Contains data indicating the sequences that cluster together within an OTU" target="vis">Mothur format List file</a></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.groups" title="Sequence-to-sample mapping (useful for mothur's beta diversity analysis)" target="vis">Mothur format group file</a></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.shared" title="The data in a shared file represents the number of times that an OTU is observed in multiple samples." target="vis" >Mothur format shared file</a></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.relabund" title="relabund file represent relative abundance of an OTU over the samples" target="vis" >OTU relabund file</a></li>
+    <li><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.groups.rarefaction" title="Rarefaction curve describing the number of OTUs observed as a function of sampling effort" target="vis">Rarefaction curve</a><a href="html/xiaoli_test_v2.0.03.subsample.groups.rarefaction.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+    <li class=""><a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.groups.summary" title="Alpha diversity indices using different calculator" target="vis">Alpha diversity index</a><a href="html/xiaoli_test_v2.0.03.subsample.groups.summary.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+    </ul>
+    </div>
+    </div>
+    <p class="thick">» &beta;-diversity measurements: OTU association &nbsp;&nbsp; <input TYPE="button" id="otuasso" class="btn" value="HELP" onClick="help('otuassoModal', 'otuasso', 'closeOTUasso');"></p>
+     <div id="otuassoModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close" id="closeOTUasso">&times;</span>
+        <p>OTU.association uses a shared or relabund file to create a matrix of correlation values indicating the association between different OTUs. Just remember that association is not the same as causation :). When we generate the gexf file, we only considered the OTUs whose aboundcne is greater than 5%, the correlation cofficient must be greater than 0.6 or less than -0.6. The gexf file can be visualized by Gephi visualization software.</p>
+        </div>
+        </div>
+
+    <div id="wrap">
+    <div id="left_col">
+    <ul id="lfile">
+    <li>Spearman <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.spearman.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Spearman gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.spearman.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.spearman.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+    <li>Pearson <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.pearson.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Pearson gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.pearson.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.pearson.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+
+    <li>Kendall <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.kendall.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Kendall gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.kendall.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.kendall.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+    </ul>
+    </div>
+    <div id="right_col">
+     <ul id="lfile">
+    <li>Spearman <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.spearman.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Spearman gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.spearman.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.spearman.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+    <li>Pearson <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.pearson.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Pearson gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.pearson.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.pearson.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+    <li>Kendall <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.kendall.otu.corr" target="vis">OTU correlation coefficient</a></li>
+    <li>Kendall gexf files at <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.kendall.otu.corr.p05.gexf" target="vis">0.05</a> and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.0.03.kendall.otu.corr.p01.gexf" target="vis">0.01</a> p-value cutoff</a></li>
+    </ul>
+
+    </div>
+    </div>
+    <p class="thick">» &beta;-diversity measurements: PCoA analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="pcoa" value="HELP" onClick="help('pcoaModal', 'pcoa', 'closePcoa');"></p>
+
+    <div id="pcoaModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closePcoa">&times;</span>
+    <p>Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible.loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.The axes file contains the plotting coordinates for graphing the results</p>
+    </div>
+    </div>
+
+    <div id="wrap">
+    <div id="left_col">
+    <ul id="lfile">
+    <li>Jclass: <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.pcoa.axes"  target="vis">pcoa.axes </a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jclass.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Jest: <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jest.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc: <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.thetayc.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis: <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.braycurtis.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass: <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.pcoa.axes">pcoa.axes </a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Jest: <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc: <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.susample.thetayc.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis: <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+    </div>
+    </div>
+
+    <p class="thick">» &beta;-diversity measurements: Tree analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="tree" value="HELP" onClick="help('treeModal', 'tree', 'closeTree');"></p>
+
+    <div id="treeModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeTree">&times;</span>
+    <p>generate a newick-formatted tree file that describes the dissimilarity (1-similarity) among multiple samples. Samples are clustered using the UPGMA algorithm using the distance between communities as calculated using any of the calculators describing the similarity in community membership or structure. Dissimilarity is calculated as one minus the similarity.The newick format tree file can be visualized in softwre like Dendroscope.</p>
+    </div>
+    </div>
+
+
+
+    <div id="wrap">
+    <div id="left_col">
+    <ul id="lfile">
+    <li>Jclass <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.tre" target="vis" >newick format sample relation tree</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jclass.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Jest <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.tre" target="vis" >newick format sample relation tree</a>  &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jest.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/xiaoli_test_v2.thetayc.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/xiaoli_test_v2.braycurtis.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre" target="vis">newick format sample relation tree</a> &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Jest <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre" target="vis">newick format sample relation tree</a>  &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+    </div>
+    </div>
+
+
+    <p class="thick">» &beta;-diversity measurements: NMDs analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="nmd" value="HELP" onClick="help('nmdModal', 'nmd', 'closeNmd');"></p>
+    <div id="nmdModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeNmd">&times;</span>
+    <p>non-metric multidimensional scaling (NMDS) tries to preserve the distance between samples using a user defined number of dimensions.The stress file contains the stress and R^2 values, which describe the quality of the ordination. Each line in this file represents a different iteration. The configuration obtained in the iteration with the lowest stress is reported in the axes file. Usually, they suggest that  a stress value below 0.20 is good (less than0.10 is very good). NMDS plots attempt to show ordinal distances between samples as accurately as possible in two dimensions. It is important to report the stress of these plots, because a high stress value means that the algorithm had a hard time representing the distances between samples in 2 dimensions.</p>
+    </div>
+    </div>
+
+
+
+    <div id="wrap">
+    <div id="left_col">
+    <ul id="lfile">
+    <li> Jclass <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.jclass.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jclass.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li> Jest <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.jest.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jest.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.thetayc.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.thetayc.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.braycurtis.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.jclass.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+    </div>
+    <div id="right_col">
+     <ul id="lfile">
+    <li> Jclass <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li> Jest <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Thetayc <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    <li>Braycurtis <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+    </ul>
+
+
+	</div>
+      </div>
+
+    </div>
+
+
+    <div id="tabs-nohdr-6">
+	<div id="wrap">
+        <div id="left_col">
+        <h3> Without subsampling or rarefying</h3>
+        </div>
+        <div id="right_col">
+        <h3> With subsampling or rarefying</h3>
+        </div>
+        </div>
+
+	<p  class="thick">» Parsimony testing &nbsp;&nbsp; <input TYPE="button" class="btn" id="parsimony" value="HELP" onClick="help('parsimonyModal', 'parsimony', 'closeParsimony');"> </p>
+    <div id="parsimonyModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeParsimony">&times;</span>
+    <p>In mothur, the parsimony method (aka p-test) is a generic test that describes whether two or more communities have the same structure. The significance of the test statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+    </div>
+    </div>
+
+
+
+    <div id="wrap">
+    <div id="left_col">
+
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.tre.psummary" target="vis">tre.psummary</a> <a href="https://www.mothur.org/wiki/Parsimony" target="vis"><img src="images/help.jpg" height="20" class="help">
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    </ul>
+    </div>
+    <div id="right_col">
+
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre.psummary" target="vis">tre.psummary</a>
+    </ul>
+    </div>
+    </div>
+    <p  class="thick">» Unifrac.weighted &nbsp;&nbsp; <input TYPE="button" class="btn" id="wunifrac" value="HELP" onClick="help('wunifracModal', 'wunifrac', 'closeWunifrac');"></p>
+
+     <div id="wunifracModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeWunifrac">&times;</span>
+    <p>Mothur implements the weighted UniFrac algorithm.The UniFrac methods are generic tests that describes whether two or more communities have the same structure. The significance of the test statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+    </div>
+    </div>
+
+
+
+
+    <div id="wrap">
+    <div id="left_col">
+
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.trewsummary" target="vis">trewsummary</a> <a href="https://www.mothur.org/wiki/Unifrac.weighted" target="vis"><img src="images/help.jpg" height="20" class="help">
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre1.weighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.trewsummary" target="vis">trewsummary</a>
+    </ul>
+    </div>
+    </div>
+
+    <p  class="thick">» Unifrac.unweighted &nbsp;&nbsp; <input TYPE="button" class="btn" id="uunifrac" value="HELP" onClick="help('uunifracModal', 'uunifrac', 'closeUunifrac');"></p>
+
+     <div id="uunifracModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeUunifrac">&times;</span>
+    <p>Mothur implements the unweighted UniFrac algorithm.The UniFrac methods are generic tests that describes whether two or more communities have the same structure. The significance of the tes	 statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+    </div>
+    </div>
+
+
+
+<div id="wrap">
+    <div id="left_col">
+
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.uwsummary" target="vis">uwsummary</a><a href="https://www.mothur.org/wiki/Unifrac.unweighted" target="vis"><img src="images/help.jpg" height="20" class="help">
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.tre1.unweighted" target="vis">tre1.weighted</a> & <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.uwsummary" target="vis">uwsummary</a>
+    </ul>
+    </div>
+    </div>
+    <p  class="thick">» AMOVA(Analysis of Molecular Variance) &nbsp;&nbsp; <input TYPE="button" class="btn" id="amova" value="HELP" onClick="help('amovaModal', 'amova', 'closeAmova');"> </p>
+    <div id="amovaModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeAmova">&times;</span>
+    <p>Analysis of molecular variance is a nonparametric analog of traditional analysis of variance. This method is widely used in population genetics to test the hypothesis that genetic diversity within two populations is not significantly different from that which would result from pooling the two populations (Excoffier et al., 1992; Anderson, 2001; Martin, 2002). Amova  tests whether the centers of the clouds representing a group are more separated than the variation among samples of the same treatment.</p>
+    </div>
+    </div>
+
+
+
+    <div id="wrap">
+    <div id="left_col">
+
+    <ul id="lfile">
+	<li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.amova" target="vis">amova testing result </a> <a href="https://mothur.org/wiki/Amova" target="vis"><img src="images/help.jpg" height="20" class="help">
+
+	<li>Jest <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.amova" target="vis">amova testing result </a>
+	<li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.amova" target="vis">amova testing result </a>
+	<li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.amova" target="vis">amova testing result </a>
+    </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.amova" target="vis">amova testing result </a>
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.amova" target="vis">amova testing result </a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.amova" target="vis">amova testing result </a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.amova" target="vis">amova testing result </a>
+    </ul>
+    </div>
+    </div>
+    <p  class="thick">» HOMOVA (Homogenity of Molecular Variance) &nbsp;&nbsp; <input TYPE="button" class="btn" id="homova" value="HELP" onClick="help('homovaModal', 'homova', 'closeHomova');"></p>
+
+     <div id="homovaModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" id="closeHomova">&times;</span>
+    <p>Homogeneity of molecular variance (HOMOVA) is a nonparametric analog of Bartlett’s test for homo- geneity of variance, which has been used in population genetics to test the hypothesis that the genetic diversity within two or more populations is homogeneous (Stewart and Excoffier, 1996);</p>
+    </div>
+    </div>
+
+
+    <div id="wrap">
+    <div id="left_col">
+
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.jclass.0.03.lt.homova" target="vis">homova testing result </a> <a href="https://mothur.org/wiki/Homova" target="vis"><img src="images/help.jpg" height="20" class="help">
+
+	<li>Jest <a href="hypothesis_testing/xiaoli_test_v2.jest.0.03.lt.homova" target="vis">homova testing result </a>
+	<li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.thetayc.0.03.lt.homova" target="vis">homova testing result </a>
+	<li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.braycurtis.0.03.lt.homova" target="vis">homova testing result </a>
+      </ul>
+    </div>
+    <div id="right_col">
+    <ul id="lfile">
+    <li>Jclass <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jclass.0.03.lt.homova" target="vis">homova testing result </a>
+    <li>Jest <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.jest.0.03.lt.homova" target="vis">homova testing result </a>
+    <li>Thetayc <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.thetayc.0.03.lt.homova" target="vis">homova testing result </a>
+    <li>Braycurtis <a href="hypothesis_testing/xiaoli_test_v2.0.03.subsample.braycurtis.0.03.lt.homova" target="vis">homova testing result </a>
+    </ul>
+    </div>
+
+
+</div>
+    </article>
+	</section>
+	<div id="sep"></div>
+	<div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a></div>
+
+	<div>
+
+	</div>
+   <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90098813-1', 'auto');
+    ga('send', 'pageview');
+
+   </script>
+	</html>

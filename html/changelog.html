@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta NAME ="Description" CONTENT ="Energy Bioengineering Research Group bioinformatics tool metaamp: metagenomic amplicon gene such as 16s rRNA, 18s rRNA gene analysis. accepts next generation sequences (454, Illumina single or paired end  reads) , generate ">
+    <meta NAME ="Keywords" CONTENT ="Next generation sequencing, 454, MiSeq, Paired end, 16s rRNA, 18s rRNA, OTU, taxonomic classification, clustering, alpha diversity, beta diversity, community comparison, University of Calgary,Geoscience,Energy Bioengineering Group, Xiaoli Dong,Marc Strous">
+
+    <link rel=stylesheet type="text/css" href="/metaamp/css/metaamp.css" title="default metaamp styles" />
+
+    <title>MetaAmp - metagenomic 16s, 18s rRNA data analysis Help</title>
+
+</head>
+
+<body>
+  <div id="outform">
+    <a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
+
+    <h1>MetaAmp Update Log</h1>
+    <div id="sep"></div>
+    <div id="result">
+       <h2>update 2018-10-10</h2>
+   <p>
+      <ul>
+         <li>Upgrade the taxonomic classification database from silva version 123 to 132</li>
+      </ul>
+   </p>
+      <h2>MetaAmp 2.0 update 2017-01-05</h2>
+
+
+      <p>
+	<ul>
+	   <li>Added "Marker gene type" option in the interface. User can upload either ssu rRNA gene or other genes</li>
+	   <li>Added "Similarity cutoff" options for the otu clustering threshold. the default is 0.97</li>
+	   <li>Deleted "Truncate the reads at the first phred score" options </li>
+	   <li>Added "Hypothesis Testing" results to the analysis results, the current available hypothesis tests are parsimony, unifrac.weighted, unifrac.unweighted, AMOVA, HOMOVA</li>
+	   <li>re-organized the metaamp analyis results page</li>
+	</ul>
+       </p>
+
+      <h2>MetaAmp 1.3 update 2016-09-14</h2>
+
+
+      <p>
+	<ul>
+	  <li>Fixed the subsampleing bugs. In the previous version, after sub-sampling, otu ids in the newly generated shared file cannot be related back to the original otu ids in the original shared file without subsampling.
+	  <li>
+	</ul>
+      </p>
+
+      <h2>update: 2016-07-29</h2>
+      <p>
+	<ul>
+	  <li>Make the excluding of the chloroplast and mitochondria 16s rRNA sequences as one option dring the analysis. The default options is to keep them
+	  <li>Upgrade the taxonomic classification database from silva version 119 to 123
+	</ul>
+      </p>
+
+      <h2>update: 2016-05-26</h2>
+      <p>	<ul>
+	  <li>Fixed most of the Eukaryota only be classified to phylum level issues</li>
+	</ul>
+      </p>
+
+
+      <h2>MetaAmp1.2, update: 2015-07-02</h2>
+      <p><ul>
+	  <li>Provided subsampling/normalized alpha, beta diversity output. Very often, each sample has different number of sequences. Sub-sampling is to randomly draw the same number of sequences from each sample.</li>
+	  <li>Provided more informative error message when the job failed</li>
+      </ul></p>
+
+	  <h2>MetaAmp1.1, update: 2015-03-26</h2>
+	 <p> <ul>
+	    <li>Can accept fasta format sequences without quality files</li>
+	    <li>The orientation of the reverse primer is from 5' to 3' instead of reverse compliment of the reverse primer</li>
+	  <li>Fixed the rarefaction curve visualization bugs</li>
+	    <li>Added system error notification method. when a job fails, MetaAmp will send user and administrator messages</li>
+	    <li>Forked a new process for doing system call and closed STDOUT and other filehandles and return to user. </li>
+	  <li>Removed "Trim amplicon to a fixed length:" option for paired-edn reads quality filtering</li>
+	  <li>Removed "Truncate the reads at the first phred score" field for the paired end reads merging </li>
+	</ul>
+      </p>
+
+
+    </div>
+    <div id="sep"></div>
+    <div id="foot">
+      Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a>
+    </div>
+    <div>
+
+      <script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-56835302-1', 'auto');
+	ga('send', 'pageview');
+
+      </script>
+    </div>
+  </div>
+</body>
+</html>

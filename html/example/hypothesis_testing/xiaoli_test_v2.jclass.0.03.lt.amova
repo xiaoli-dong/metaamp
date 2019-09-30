@@ -1,0 +1,32 @@
+C-P-U	Among	Within	Total
+SS	0.127735	0.0765838	0.204319
+df	2	9	11
+MS	0.0638675	0.00850932
+
+Fs:	7.5056
+p-value: <0.001*
+
+C-P	Among	Within	Total
+SS	0.0442262	0.0565102	0.100736
+df	1	6	7
+MS	0.0442262	0.00941836
+
+Fs:	4.69575
+p-value: 0.029
+
+C-U	Among	Within	Total
+SS	0.0692307	0.0529962	0.122227
+df	1	6	7
+MS	0.0692307	0.0088327
+
+Fs:	7.838
+p-value: 0.03
+
+P-U	Among	Within	Total
+SS	0.0781455	0.0436613	0.121807
+df	1	6	7
+MS	0.0781455	0.00727688
+
+Fs:	10.7389
+p-value: 0.031
+
