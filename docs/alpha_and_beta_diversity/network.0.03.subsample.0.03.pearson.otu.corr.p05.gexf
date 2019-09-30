@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+<graph mode="static" defaultedgetype="undirected">
+<attributes class="edge">
+<attribute id="0" title="q-value" type="float"/>
+</attributes>
+<nodes>
+	<node id="Otu5" label="Otu5">
+		<viz:size value="1772"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu8" label="Otu8">
+		<viz:size value="1102"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu6" label="Otu6">
+		<viz:size value="1354"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu14" label="Otu14">
+		<viz:size value="666"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu4" label="Otu4">
+		<viz:size value="2049"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu17" label="Otu17">
+		<viz:size value="22"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu7" label="Otu7">
+		<viz:size value="1928"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu13" label="Otu13">
+		<viz:size value="523"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu16" label="Otu16">
+		<viz:size value="220"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu12" label="Otu12">
+		<viz:size value="589"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu2" label="Otu2">
+		<viz:size value="2409"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu15" label="Otu15">
+		<viz:size value="476"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu9" label="Otu9">
+		<viz:size value="1058"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu10" label="Otu10">
+		<viz:size value="1016"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu1" label="Otu1">
+		<viz:size value="4232"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu18" label="Otu18">
+		<viz:size value="10"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+	<node id="Otu3" label="Otu3">
+		<viz:size value="2606"/>
+<viz:color r="255" g="0" b="255"></viz:color>
+	</node>
+</nodes>
+<edges>
+	<edge id="0" source="Otu10" target="Otu7" weight="0.87">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="1" source="Otu10" target="Otu8" weight="0.84">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="2" source="Otu12" target="Otu1" weight="0.84">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="3" source="Otu12" target="Otu3" weight="0.93">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="4" source="Otu12" target="Otu4" weight="0.82">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="5" source="Otu12" target="Otu5" weight="0.88">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="6" source="Otu12" target="Otu7" weight="0.76">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.017544"/></attvalues>
+	</edge>
+	<edge id="7" source="Otu12" target="Otu8" weight="0.77">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.011696"/></attvalues>
+	</edge>
+	<edge id="8" source="Otu14" target="Otu13" weight="0.81">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="9" source="Otu14" target="Otu2" weight="0.88">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="10" source="Otu15" target="Otu12" weight="0.74">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.035088"/></attvalues>
+	</edge>
+	<edge id="11" source="Otu15" target="Otu13" weight="0.90">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="12" source="Otu15" target="Otu14" weight="0.86">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="13" source="Otu15" target="Otu2" weight="0.73">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.046784"/></attvalues>
+	</edge>
+	<edge id="14" source="Otu15" target="Otu5" weight="0.82">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="15" source="Otu15" target="Otu9" weight="0.76">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.017544"/></attvalues>
+	</edge>
+	<edge id="16" source="Otu16" target="Otu3" weight="0.76">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.017544"/></attvalues>
+	</edge>
+	<edge id="17" source="Otu16" target="Otu4" weight="0.78">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="18" source="Otu16" target="Otu7" weight="0.82">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="19" source="Otu17" target="Otu1" weight="0.73">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.040936"/></attvalues>
+	</edge>
+	<edge id="20" source="Otu17" target="Otu12" weight="0.75">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.023392"/></attvalues>
+	</edge>
+	<edge id="21" source="Otu17" target="Otu3" weight="0.81">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="22" source="Otu17" target="Otu4" weight="0.74">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.035088"/></attvalues>
+	</edge>
+	<edge id="23" source="Otu17" target="Otu5" weight="0.81">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="24" source="Otu18" target="Otu10" weight="0.74">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.029240"/></attvalues>
+	</edge>
+	<edge id="25" source="Otu3" target="Otu1" weight="0.92">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="26" source="Otu4" target="Otu1" weight="0.84">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="27" source="Otu4" target="Otu3" weight="0.86">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="28" source="Otu5" target="Otu1" weight="0.81">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="29" source="Otu5" target="Otu3" weight="0.90">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="30" source="Otu5" target="Otu4" weight="0.84">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="31" source="Otu6" target="Otu1" weight="0.83">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="32" source="Otu6" target="Otu3" weight="0.81">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="33" source="Otu6" target="Otu4" weight="0.90">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="34" source="Otu6" target="Otu5" weight="0.82">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="35" source="Otu7" target="Otu1" weight="0.81">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="36" source="Otu7" target="Otu3" weight="0.87">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="37" source="Otu7" target="Otu4" weight="0.82">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="38" source="Otu7" target="Otu6" weight="0.77">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.011696"/></attvalues>
+	</edge>
+	<edge id="39" source="Otu8" target="Otu1" weight="0.79">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="40" source="Otu8" target="Otu3" weight="0.87">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="41" source="Otu8" target="Otu4" weight="0.85">
+	<viz:color r="0" g="255" b="255"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="42" source="Otu8" target="Otu6" weight="0.81">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+	<edge id="43" source="Otu8" target="Otu7" weight="0.89">
+	<viz:color r="0" g="255" b="0"></viz:color>
+		<attvalues><attvalue for="0" value="0.005848"/></attvalues>
+	</edge>
+</edges>
+</graph>
+</gexf>
