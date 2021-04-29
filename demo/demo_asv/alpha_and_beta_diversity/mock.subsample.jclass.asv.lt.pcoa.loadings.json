@@ -1,0 +1,27 @@
+loadingtablecol = [
+  {"title": "axis", "data": "axis"},
+  {"title": "loading", "data": "loading"}
+];
+loadingdata = [
+  {"axis": "1", "loading": "24.562334"},
+  {"axis": "2", "loading": "22.637295"},
+  {"axis": "3", "loading": "13.633938"},
+  {"axis": "4", "loading": "10.009751"},
+  {"axis": "5", "loading": "6.298759"},
+  {"axis": "6", "loading": "4.311352"},
+  {"axis": "7", "loading": "3.655349"},
+  {"axis": "8", "loading": "3.365306"},
+  {"axis": "9", "loading": "1.923629"},
+  {"axis": "10", "loading": "1.511206"},
+  {"axis": "11", "loading": "1.203246"},
+  {"axis": "12", "loading": "1.108733"},
+  {"axis": "13", "loading": "1.108733"},
+  {"axis": "14", "loading": "1.095960"},
+  {"axis": "15", "loading": "1.054359"},
+  {"axis": "16", "loading": "0.895494"},
+  {"axis": "17", "loading": "0.743183"},
+  {"axis": "18", "loading": "0.582247"},
+  {"axis": "19", "loading": "0.299126"},
+  {"axis": "20", "loading": "0.000000"},
+  {"axis": "21", "loading": "-0.000000"}
+];

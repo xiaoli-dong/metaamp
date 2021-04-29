@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <script type="text/javascript" src="../js/jsphylosvg-1.55/raphael-min.js" ></script> 
+    <script type="text/javascript" src="../js/jsphylosvg-1.55/jsphylosvg-min.js"></script> 
+    <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+	//	0get("tree.newick", function(data) {
+	    var data = '((((((U4_rep2:0.0057945,U2_rep2:0.0057945):0.003032,U2_rep1:0.00882649):0.00466153,((U3_rep1:0.0025855,U1_rep2:0.0025855):0.00160074,U1_rep1:0.00418624):0.00930178):0.00674611,U3_rep2:0.0202341):0.0308706,U4_rep1:0.0511048):0.21679,((((P4_rep2:0.0184455,P4_rep1:0.0184455):0.00810197,(((P3_rep2:0.00905749,P3_rep1:0.00905749):0.00291976,P2_rep1:0.0119773):0.00461894,(P2_rep2:0.010064,P1_rep2:0.010064):0.00653219):0.00995126):0.00426638,P1_rep1:0.0308138):0.128412,(((C4_rep2:0.00951201,C1_rep1:0.00951201):0.00303549,C4_rep1:0.0125475):0.0152793,((C3_rep2:0.00901949,C1_rep2:0.00901949):0.00318027,(C3_rep1:0.00984624,(C2_rep2:0.00734699,C2_rep1:0.00734699):0.00249925):0.00235352):0.015627):0.131399):0.108669);';
+	    
+	    
+	    var dataObject = {
+	      newick: data,
+	      fileSource: false
+	    };		
+	    phylocanvas = new Smits.PhyloCanvas(
+		dataObject,
+		'svgCanvas', 
+		800, 800
+		//'circular'
+		);
+	    
+	
+	    
+	    //	});
+	
+		       });
+</script>
+    
+    </head>
+    
+    
+    <body>
+  <div id="svgCanvas"> </div>
+</body>
+</html>		
+
+

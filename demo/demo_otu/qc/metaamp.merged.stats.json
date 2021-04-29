@@ -1,0 +1,38 @@
+mergetablecol = [
+  {"title": "filename", "data": "filename"},
+  {"title": "count", "data": "count"},
+  {"title": "total_bp", "data": "total_bp"},
+  {"title": "min", "data": "min"},
+  {"title": "max", "data": "max"},
+  {"title": "mean", "data": "mean"},
+  {"title": "median", "data": "median"},
+  {"title": "mode", "data": "mode"},
+  {"title": "n50", "data": "n50"},
+  {"title": "std", "data": "std"}
+];
+mergedata = [
+  {"filename": "C1_rep1", "count": "135186", "total_bp": "56893936", "min": "62", "max": "456", "mean": "420.86", "median": "427.00", "mode": "427", "n50": "427", "std": "11.14"},
+  {"filename": "C1_rep2", "count": "98748", "total_bp": "41558489", "min": "62", "max": "439", "mean": "420.85", "median": "427.00", "mode": "427", "n50": "427", "std": "11.14"},
+  {"filename": "C2_rep1", "count": "6551", "total_bp": "2767906", "min": "246", "max": "433", "mean": "422.52", "median": "427.00", "mode": "427", "n50": "427", "std": "9.92"},
+  {"filename": "C2_rep2", "count": "72815", "total_bp": "30637761", "min": "62", "max": "437", "mean": "420.76", "median": "427.00", "mode": "427", "n50": "427", "std": "11.19"},
+  {"filename": "C3_rep1", "count": "3233", "total_bp": "1364241", "min": "246", "max": "429", "mean": "421.97", "median": "427.00", "mode": "427", "n50": "427", "std": "10.52"},
+  {"filename": "C3_rep2", "count": "14521", "total_bp": "6133878", "min": "120", "max": "437", "mean": "422.41", "median": "427.00", "mode": "427", "n50": "427", "std": "10.31"},
+  {"filename": "C4_rep1", "count": "109078", "total_bp": "45903779", "min": "62", "max": "439", "mean": "420.83", "median": "427.00", "mode": "427", "n50": "427", "std": "11.15"},
+  {"filename": "C4_rep2", "count": "81350", "total_bp": "34238383", "min": "62", "max": "439", "mean": "420.88", "median": "427.00", "mode": "427", "n50": "427", "std": "11.11"},
+  {"filename": "P1_rep1", "count": "100562", "total_bp": "42318180", "min": "62", "max": "439", "mean": "420.82", "median": "427.00", "mode": "427", "n50": "427", "std": "11.16"},
+  {"filename": "P1_rep2", "count": "89666", "total_bp": "37726256", "min": "62", "max": "439", "mean": "420.74", "median": "427.00", "mode": "427", "n50": "427", "std": "11.17"},
+  {"filename": "P2_rep1", "count": "85505", "total_bp": "35979407", "min": "62", "max": "439", "mean": "420.79", "median": "427.00", "mode": "427", "n50": "427", "std": "11.16"},
+  {"filename": "P2_rep2", "count": "24047", "total_bp": "10131497", "min": "120", "max": "437", "mean": "421.32", "median": "427.00", "mode": "427", "n50": "427", "std": "10.91"},
+  {"filename": "P3_rep1", "count": "65216", "total_bp": "27419600", "min": "62", "max": "437", "mean": "420.44", "median": "427.00", "mode": "427", "n50": "427", "std": "11.39"},
+  {"filename": "P3_rep2", "count": "51205", "total_bp": "21547786", "min": "120", "max": "437", "mean": "420.81", "median": "427.00", "mode": "427", "n50": "427", "std": "11.05"},
+  {"filename": "P4_rep1", "count": "60601", "total_bp": "25485811", "min": "62", "max": "437", "mean": "420.55", "median": "427.00", "mode": "427", "n50": "427", "std": "11.25"},
+  {"filename": "P4_rep2", "count": "129999", "total_bp": "54704257", "min": "62", "max": "439", "mean": "420.81", "median": "427.00", "mode": "427", "n50": "427", "std": "11.18"},
+  {"filename": "U1_rep1", "count": "104227", "total_bp": "43858693", "min": "62", "max": "439", "mean": "420.80", "median": "427.00", "mode": "427", "n50": "427", "std": "11.15"},
+  {"filename": "U1_rep2", "count": "40322", "total_bp": "16982153", "min": "120", "max": "437", "mean": "421.16", "median": "427.00", "mode": "427", "n50": "427", "std": "10.91"},
+  {"filename": "U2_rep1", "count": "92548", "total_bp": "38938756", "min": "62", "max": "439", "mean": "420.74", "median": "427.00", "mode": "427", "n50": "427", "std": "11.22"},
+  {"filename": "U2_rep2", "count": "115957", "total_bp": "48802123", "min": "62", "max": "439", "mean": "420.86", "median": "427.00", "mode": "427", "n50": "427", "std": "11.12"},
+  {"filename": "U3_rep1", "count": "105209", "total_bp": "44272700", "min": "62", "max": "439", "mean": "420.81", "median": "427.00", "mode": "427", "n50": "427", "std": "11.14"},
+  {"filename": "U3_rep2", "count": "132536", "total_bp": "55774908", "min": "62", "max": "439", "mean": "420.83", "median": "427.00", "mode": "427", "n50": "427", "std": "11.16"},
+  {"filename": "U4_rep1", "count": "54362", "total_bp": "22870583", "min": "120", "max": "437", "mean": "420.71", "median": "427.00", "mode": "427", "n50": "427", "std": "11.10"},
+  {"filename": "U4_rep2", "count": "31583", "total_bp": "13300440", "min": "120", "max": "437", "mean": "421.13", "median": "427.00", "mode": "427", "n50": "427", "std": "11.02"}
+];

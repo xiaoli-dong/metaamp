@@ -16,6 +16,6 @@ where options are: -i  <*.groups.summary file generated from mothur analysis> <-
 
 my $template_text = read_file($template);
 
-$template_text =~ s/ebgmetaamptsv/..\/$input/;
+$template_text =~ s/ebgmetaamptsv/..\/$input/g;
 
 print $template_text;

@@ -115,7 +115,7 @@ sub print_web_start{
    </head>
 <body bgcolor="#ffffff">
 <div id="outform">
-	<a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
+	<a href="index.html" id="logo">MetaAmp Logo</a>
 
     <h1>MetaAmp Version 2.0 </h1>
     <div id="sep"></div>

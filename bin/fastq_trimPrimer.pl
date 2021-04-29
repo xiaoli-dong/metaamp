@@ -33,7 +33,9 @@ my ($prefix) = $fastq =~ /(.*)\.[^.]+$/;
 #system($cmd) >> 8 and  die "Could not execute cmd=$cmd, $!\n";
 #mothur has bug for trim.seqs when using multiple processors
 #$cmd = "$mothur \"#trim.seqs(fasta=$prefix.fasta, qfile=$prefix.qual, oligos=oligos.txt, pdiffs=$pdiffs, processors=1);make.fastq();\"";
-my $cmd = "$mothur \"#fastq.info(fastq=$fastq,fasta=T, qfile=T);trim.seqs(fasta=current, qfile=current, oligos=oligos.txt, pdiffs=$pdiffs, processors=$cpus);make.fastq();\"";
+#[ERROR]: sequence name does not match quality score name. Cannot construct fastq object. make.fastq() bugs
+
+my $cmd = "$mothur \"#fastq.info(fastq=$fastq,fasta=T, qfile=T);trim.seqs(fasta=current, qfile=current, oligos=$oligos, pdiffs=$pdiffs, processors=$cpus);make.fastq();\"";
 print STDERR "$cmd\n";
 system($cmd) >> 8 and  die "Could not execute cmd=$cmd, $!\n";
 #move "$prefix.trim.fastq", "$samplename.strip.fastq";

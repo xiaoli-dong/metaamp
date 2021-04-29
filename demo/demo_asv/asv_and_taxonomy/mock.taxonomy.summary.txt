@@ -1,0 +1,14 @@
+#Taxonomy	Total	C1_rep2	C2_rep1	C2_rep2	C3_rep1	C3_rep2	C4_rep1	C4_rep2	P1_rep2	P2_rep1	P2_rep2	P3_rep1	P3_rep2	P4_rep1	P4_rep2	U1_rep1	U1_rep2	U2_rep1	U2_rep2	U3_rep2	U4_rep1	U4_rep2
+Bacteria;Deinococcota;Deinococci;Thermales;Thermaceae;Thermus;	213	0	0	43	0	49	0	0	0	0	29	0	33	0	56	0	0	0	0	3	0	0	
+Bacteria;Firmicutes;Bacilli;Bacillales;Bacillaceae;Bacillus;	5659	584	241	862	0	792	185	609	172	105	469	131	500	182	768	0	18	0	0	13	0	28	
+Bacteria;Firmicutes;Bacilli;Staphylococcales;Staphylococcaceae;Staphylococcus;	2482	35	0	34	0	44	0	40	158	118	446	0	582	185	638	17	77	19	34	14	0	41	
+Bacteria;Proteobacteria;Alphaproteobacteria;Rhizobiales;Rhizobiaceae;Allorhizobium-Neorhizobium-Pararhizobium-Rhizobium;	10906	402	0	435	0	510	98	716	508	207	1137	106	1325	479	1475	304	994	147	782	246	89	946	
+Bacteria;Proteobacteria;Alphaproteobacteria;Rhodobacterales;Rhodobacteraceae;Paracoccus;	1095	68	0	50	0	68	0	81	60	0	174	35	206	0	236	0	35	0	28	0	0	54	
+Bacteria;Proteobacteria;Alphaproteobacteria;Rhodobacterales;Rhodobacteraceae;Rhodobacteraceae;	1286	116	0	113	0	150	0	148	76	48	166	0	137	0	214	0	54	0	32	0	0	32	
+Bacteria;Proteobacteria;Gammaproteobacteria;Alteromonadales;Alteromonadaceae;Alteromonas;	1231	93	21	84	0	98	0	115	81	0	208	0	213	90	228	0	0	0	0	0	0	0	
+Bacteria;Proteobacteria;Gammaproteobacteria;Burkholderiales;Burkholderiaceae;Cupriavidus;	6273	112	0	125	0	146	0	165	165	81	319	0	384	109	447	271	1166	229	988	405	194	967	
+Bacteria;Proteobacteria;Gammaproteobacteria;Burkholderiales;Chromobacteriaceae;Chromobacterium;	2600	374	145	597	0	465	147	487	19	0	78	0	93	46	149	0	0	0	0	0	0	0	
+Bacteria;Proteobacteria;Gammaproteobacteria;Enterobacterales;Enterobacteriaceae;Escherichia-Shigella;	2672	138	0	185	0	230	0	228	141	86	293	0	342	0	411	65	217	0	158	50	0	128	
+Bacteria;Proteobacteria;Gammaproteobacteria;Enterobacterales;Enterobacteriaceae;Salmonella;	11190	475	163	631	0	611	198	784	405	181	806	212	923	255	1086	345	1399	199	971	336	215	995	
+Bacteria;Proteobacteria;Gammaproteobacteria;Pseudomonadales;Pseudomonadaceae;Pseudomonas;	9449	823	108	921	153	773	287	989	373	103	839	107	867	261	1525	52	345	38	378	100	50	357	
+Bacteria;Proteobacteria;Gammaproteobacteria;Xanthomonadales;Xanthomonadaceae;Stenotrophomonas;	5213	259	0	308	82	318	132	408	163	0	374	99	365	0	550	176	594	133	418	183	138	513	

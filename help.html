@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta NAME ="Description" CONTENT ="Energy Bioengineering Research Group bioinformatics tool metaamp: metagenomic amplicon gene such as 16s rRNA, 18s rRNA gene analysis. accepts next generation sequences (454, Illumina single or paired end  reads) , generate ">
+    <meta NAME ="Keywords" CONTENT ="Next generation sequencing, 454, MiSeq, Paired end, 16s rRNA, 18s rRNA, OTU, taxonomic classification, clustering, alpha diversity, beta diversity, community comparison, University of Calgary,Geoscience,Energy Bioengineering Group, Xiaoli Dong,Marc Strous">
+    <link rel=stylesheet type="text/css" href="css/metaamp.css" title="default metaamp styles" />
+    <title>MetaAmp - metagenomic 16s, 18s rRNA data analysis Help</title>
+  </head>
+  
+  <body>
+    <div id="outform">
+      <div id="outline">
+	  <div id="banner" ></div>
+
+	  <div id="navcont" style="text-align: right;">
+            <ul id="nav">
+              <li><a href="help.html">Help</a></li>
+	      <li><a href="changelog.html">Changelog</a></li>
+              <li><a href="index.asv.html">ASV Analysis</a></li>
+              <li><a href="index.otu.html">OTU Analysis</a></li>
+              <li><a href="index.html">Home</a></li>
+	    </ul>
+	  </div>
+	  
+	  <div id="pagetitle">
+	    <h1>MetaAmp Version 3.0 - Help </h1>
+	  </div>
+	  <div id="pwraper">
+	    <p>MetaAmp has two analysis components. The OTU analysis component clusters the amplicon sequences into OTUs, and the ASV analysis component infers ASVs. Both analysis components can take single or paired-end amplicon sequence files as inputs. While the OTU anlsyis component can take both fasta and fastq format sequence files as inputs, the ASV analysis component can only accept fastq format sequence files.</p>
+	    
+	    <p>Please note that <b>"oligos.txt"</b> and <b>"design.txt"</b> file names are reserved by the MetaAmp program and please avoid naming your sequence and mapping files with the same names.</p>
+	    <p>Mock community testing data set is available at: <a href="html/download.html">download page</a>.</p>
+	    <h2>How to make an archive of sequence files:</h2>
+            <p>To make an archive file, Firstly, you create a directory or folder. Secondly, you copy your fastq or fasta format sequence files into the directory or folder. And Third, you can archive this directory or folder with your favorite program such as tar, zip. </p>
+	    <p>Please note: <ul>
+		<li>The squence files in an archive are <b>the demultiplexed fastq or fasta format sequence files.</b> Those sequence files can be uncompressed or commpressed (gz) format.</li>
+		<li>When the sequences are in <b>"fastq"</b> format, the file name extension must be <b>".fastq"</b>. The interleaved fastq format files for paired-end sequencing are not supported. The paired-end read1 and read2 files must be in the seperated files.</li>
+		<li>When the sequences are in <b>"fasta"</b> format, the file name extensions must be <b>".fna" </b> or <b>".fasta"</b> for sequence files and <b>".qual"</b> for quality files. Providing quality files for the fasta format sequences will help to get better analysis results. When the quality files are supplied, the pairs of the fasta and quality files indicated by two file names differing only in their extensions.</li>
+		
+		<li> The compressed archived file can speed up the file uploading. The archive formats below are supported:
+		  <ul>
+		    <li>zip: Zip compressed file (.zip, .jar or .par)</li>
+		    <li>tgz: Gzip compressed tar file (.tgz or .tar.gz)</li>
+		    <li>tar: Standard tar file (.tar)</li>
+		    <li>tbz: Bzip2 compressed tar file (.tbz or .tar.bz2)</li>
+		    <li>txz: Xz compressed tar file (.txz or .tar.xz)</li>
+		    <li>gz: Gzip compressed file (.gz)</li>
+		    <li>Z: Lempel-Ziv compressed file (.Z)</li>
+		    <li>bz2: Bzip2 compressed file (.bz2)</li>
+		    <li>xz: Xz compressed file (.xz)</li>
+		    <li>lzma: Lzma compressed file (.lzma)</li>
+		  </ul>
+		</li>
+	      </ul>
+	    </p>
+	    <h2>How to make a mapping file:</h2>
+
+	    <p>MetaAmp uses the information in the mapping file to assocaite sequence files in an archive with smaples and their metadata. The mapping file is <b>a space-delimlited text file.</b></p>
+	    <p>In the MetaAmp OTU analysis, the mapping file of the single end sequence analysis has <b>four required columns</b> (#samplename, Treatment or condition, Strand, Read1) and the mapping file of the paired-end sequence analysis has <b>five required columns</b> (#samplename, Treatment or condition, Strand, Read1, Read2). </p> 
+	    <p>In the MetaAmp ASV analysis, the mapping file of the single end sequence analysis has <b>four required columns</b> (#samplename, Treatment or condition, Strand, Read1) and one optional fifth column (runid). <i><b>Without the fifth runid column, all the sequence files will be assumed from the same sequencing run and will be processed together.</i></b> The mapping file of the paired-end sequence analysis has <b>five required columns</b> (#samplename, Treatment or condition, Strand, Read1, Read2) and one optional sixth column (runid). When the optional last column for single end or paired-end sequence provided, MetaAmp will learn the error rate from each run individually becasue different sequenec runs can have different error profiles. <b><i>Without the sixth runid column, all the sequence files will be assumed from the same sequencing run and will be processed together.</i></b></p> 
+	    
+	    <p>In the mapping file, please note: </p>
+
+	    <ul>
+	      <li>The short sample names will make the MetaAmp visualization looking better.The sample name must be unique and can only contain characters, numbers and underscore [a-zA-z0-9_]. No spaces and no hyphens are allowed in the sample name and also a smaple name cannot start with nubmers. </li>
+	      <li>The Strand column accepts "+|-" signs. It's orientation of the amplicon sequence in read 1 file.</li>
+	      <li>Each or each pair of the sequencing files can only belong to one sample</li>
+	      <li>Please group your samples by treatments or conditions ( for example control vs. disease, time_0 vs. time_1week). This is very important for the hypothesis test. From time to time, I have seen users just copied sample name column to the treatment or condition column. The MetaAmp will still run but the statistical testing result will not make sense at all. </li>
+	      
+	    </ul>
+	    <p>A paired-end sequencing mapping file example withour the sixth optional columnis as following. In the mapping file, the first line is the header line, which is optional. The header starts with the sharp chararter "#".</p>
+	    <p> <img src="images/mapping_example.jpg" alt="MetaAmp paired-end sequencing mapping file example" style="padding: 20px;"></p>
+	    
+	    <p>A paired-end sequencing mapping file example with the sixth optional columnis as following.</p>
+	    <p><img src="images/mapping.paired.dada2.png" alt="MetaAmp paired-end sequencing mapping file example with runid" style="padding: 20px;"></p>
+	    
+	    <p>A single-end sequencing mapping file example is as following.It has four columns.</p>
+	    <p><img src="images/mapping_example_single.jpg" alt="MetaAmp single-end seuqnecing mapping file example" style="padding: 20px;"></p>
+	    
+	    <p>A single-end sequencing mapping file example with five columns.</p>
+	    <p><img src="images/mapping.single.dada2.png" alt="MetaAmp single-end seuqnecing mapping file example with runid column" style="padding: 20px;"></p>
+
+	    <h2>Forward and reverse primers:</h2>
+	    <p>
+	      <ul>
+		<li>The primers are the amplicon primers (not adapter, sequencing primer) and the orientations are from 5' to 3'</li>
+		<li>The forward and reverse primers can also be degenerate using standard IUPAC nomenclature.</li>
+		<li>Primers can be upper or lower case letters.</li>
+		<li>multiple forward/reverse primers must be entered in the separate lines in the box.</li>
+		<li>For the paired-end sequencing, the forward primers are the primers you used to generated your R1 read, the reverse primers are the primers you used to generate R2 reads.</li>
+		<li>For the single-read sequencing, the forward primers are best thought of as the forward sequencing primer. So if you are using the 16S rRNA primers 27f and 338r to generate sequencing substrate, but you are sequencing off of the 338r end of the fragment, you would list 338r as the forward primer and 27f as the reverse. If your target region is longer than the length which your sequencing platform can generate, you should leave the reverse primer box as empty, in this way, you are telling the program to only screen the primer at the front. </li>
+	      </ul>
+	    </p>
+	  </div>
+	  <div id="sep"></div>
+	  <div id="foot">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a>
+	  </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
+

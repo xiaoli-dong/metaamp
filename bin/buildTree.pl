@@ -42,9 +42,9 @@ sub print_taxonTree{
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Taxonomy Tree</title>
-	<link rel="stylesheet" type="text/css" href="http://ebg.ucalgary.ca/metaamp/css/ext-theme-classic-all.css">
-	<script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/extjs/ext-all.js"></script>
-	<script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/extjs/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/ext-theme-classic-all.css">
+	<script type="text/javascript" src="../js/extjs/ext-all.js"></script>
+	<script type="text/javascript" src="../js/extjs/bootstrap.js"></script>
 	<script type="text/javascript" src="$taxontxt.js"></script>
 	
         <style type="text/css">

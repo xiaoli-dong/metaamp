@@ -1,0 +1,57 @@
+<html lang="en">
+
+  <head>
+    <title>PCoA analysis</title>
+    <meta charset="utf-8" />
+    <link rel=stylesheet type="text/css" href="../css/metaamp.css" title="default metaamp styles" />
+    <script type="text/javascript" src="https://ebg.ucalgary.ca/metaamp/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="https://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/highcharts.js"></script>
+    <script type="text/javascript" src="https://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/data.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="../alpha_and_beta_diversity/mock.braycurtis.asv.lt.pcoa.axes.json"></script>
+    <script src="../alpha_and_beta_diversity/mock.braycurtis.asv.lt.pcoa.loadings.json"></script>
+    <script type="text/javascript" src="pca.js"></script>
+
+  </head>
+
+
+  <body>
+    <div id="outform">
+       <div id="outline">
+	<div id="banner" ></div>
+	<div id="title">
+	  <h1>MetaAmp Version 3.0 </h1>
+	</div>
+	<div id="sep"></div>
+	
+	<div id="space"></div>
+        <h3>Principal Coordinates (PCoA) visualization </h3>
+        <div id="result">
+          <div id="toggle">
+            <button id="button1">Toggle Labels</button>
+          </div>
+          <div id="pca12" style="width:70%; margin-left: auto; margin-right:auto;"></div>
+          <div id="space"></div>
+          <div id="toggle">
+            <button id="button2">Toggle Labels</button>
+          </div>
+          <div id="pca13" style="width:70%; margin-left: auto; margin-right:auto;"></div>
+          <div id="space"></div>
+          <div id="toggle">
+            <button id="button3">Toggle Labels</button>
+          </div>
+          <div id="pca23" style="width:70%; margin-left: auto; margin-right:auto;"></div>
+	</div>
+        <div id="space"></div>
+        <div id="sep"></div>
+        <div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong\@ucalgary.ca">Xiaoli Dong</a>
+	  or <a HREF="mailto:mstrous\@ucalgary.ca">Marc Strous</a>
+          <br><a href="https://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a>            in <a href="https://geoscience.ucalgary.ca/">Departme
+	    nt of Geoscience</a>            at <a href="https://www.ucalgary.ca">Univeristy of Calgary</a> </div>
+
+      </div>	
+  </body>
+
+</html>

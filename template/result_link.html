@@ -1,0 +1,44 @@
+<html lang=”en”>
+  <head>
+    <meta charset="utf-8">
+    <title>MetaAmp Job Resceived</title>
+
+    <link rel="stylesheet" href="../css/metaamp.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  </head>
+
+  <body>
+    <div id="outform">
+      <form id="metaamp" name="metaamp" METHOD ="post" ENCTYPE="multipart/form-data">
+	<div id="outline">
+
+	  <div id="banner" ></div>
+	  <div id="navcont" style="text-align: right;">
+            <ul id="nav">
+              <li><a href="help.html">Help</a></li>
+              <li><a href="index.asv.html">ASV Analysis</a></li>
+              <li><a href="index.otu.html">OTU Analysis</a></li>
+              <li><a href="index.html">Home</a></li>
+	    </ul>
+	  </div>
+	  <div id="pagetitle">
+	    <h1>MetaAmp Version 3.0 - METAAMPTYPE based amplicon analysis result</h1>
+	  </div>
+	  <div id="result">
+	    <p>MetaAmp job has been received:</p>
+	    <p>Analysis name: METAAMP_ANALYSISNAME</p>
+	    <p>Submitted by METAAMP_USER_EMAIL at METAAMP_SUBMIT_TIME</p>
+	    <p>Results will be linked to: <a href="METAAMP_RESULT_URL">Result Access Page</a> after the job finished
+       <p>You can open and refersh the page to monitor the MetaAmp progress at the real time at: <a href="METAAMP_DEBUG_URL">debug.txt</a>
+	    <p>An email will be sent to you when the analysis is finished.</p>
+	    <p>Number of fastq files: METAAMPFASTQXOUNT</p>
+	  </div>
+	  <div id="sep"></div>
+	  <div id="foot">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a></div>
+	</div>
+  </body>
+</html>

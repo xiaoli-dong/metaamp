@@ -5,14 +5,16 @@ use warnings;
 use strict;
 
 
-my ($shared,$minpercent, $minnumsamples);
+my ($shared,$minpercent, $minnumsamples, $method);
 
 $minpercent = 0.1;
 $minnumsamples = 0;
-
+$method = "otu";
+    
 GetOptions(
     "s=s" => \$shared,
     "mp=f" => \$minpercent,
+    "m=s" => \$method,
     "mns=i" =>\$minnumsamples
     );
 
@@ -20,6 +22,7 @@ GetOptions(
     die "usage: $0 OPTIONS\n".
     "where options are:\n".
     "-s <shared file>\n".
+    "-m <otu|asv>\n".
     "-mp <the minimum relative abundance in percent of an OTU in the sample, default: 0.1, it means 0.1%>\n".
     "-mns <the minimum number of samples present in an OTU, default: 0, If the number of samples present falls below the minimum, the OTU is removed>\n".
     "filter mothur shared file\n";
@@ -86,8 +89,8 @@ for my $dist (keys %otus1){
     my @ids = sort {$a <=>$b} keys %{$keep_ids{$dist}};
 
     my $numOtus = @ids;
-    
-    print "label\tGroup\tnumOtus\t", join("\t", map{"Otu" . ($_+1)} @ids), "\n";
+    my $prefix = $method eq "otu" ? "otu" : "asv";
+    print "label\tGroup\tnum$prefix", "s\t", join("\t", map{"$prefix\_" . ($_+1)} @ids), "\n";
     
     for my $sample (keys %{$otus1{$dist}}){
 	print "$dist\t$sample\t$numOtus";

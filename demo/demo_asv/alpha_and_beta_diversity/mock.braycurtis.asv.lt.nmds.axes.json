@@ -1,0 +1,28 @@
+axestablecol = [
+  {"title": "group", "data": "group"},
+  {"title": "axis1", "data": "axis1"},
+  {"title": "axis2", "data": "axis2"}
+];
+axesdata = [
+  {"group": "C1_rep2", "axis1": "-0.176058", "axis2": "0.201231"},
+  {"group": "C2_rep1", "axis1": "0.249777", "axis2": "0.541839"},
+  {"group": "C2_rep2", "axis1": "-0.262866", "axis2": "0.238250"},
+  {"group": "C3_rep1", "axis1": "0.715608", "axis2": "0.252342"},
+  {"group": "C3_rep2", "axis1": "-0.251333", "axis2": "0.192226"},
+  {"group": "C4_rep1", "axis1": "0.289177", "axis2": "0.303296"},
+  {"group": "C4_rep2", "axis1": "-0.297447", "axis2": "0.141226"},
+  {"group": "P1_rep2", "axis1": "-0.003013", "axis2": "0.008737"},
+  {"group": "P2_rep1", "axis1": "0.321023", "axis2": "0.111813"},
+  {"group": "P2_rep2", "axis1": "-0.350617", "axis2": "0.025371"},
+  {"group": "P3_rep1", "axis1": "0.473989", "axis2": "-0.067245"},
+  {"group": "P3_rep2", "axis1": "-0.395978", "axis2": "0.008805"},
+  {"group": "P4_rep1", "axis1": "0.117424", "axis2": "0.189157"},
+  {"group": "P4_rep2", "axis1": "-0.474616", "axis2": "0.045403"},
+  {"group": "U1_rep1", "axis1": "0.136163", "axis2": "-0.348184"},
+  {"group": "U1_rep2", "axis1": "-0.340230", "axis2": "-0.300502"},
+  {"group": "U2_rep1", "axis1": "0.344125", "axis2": "-0.295761"},
+  {"group": "U2_rep2", "axis1": "-0.264422", "axis2": "-0.265195"},
+  {"group": "U3_rep2", "axis1": "0.125614", "axis2": "-0.315126"},
+  {"group": "U4_rep1", "axis1": "0.328605", "axis2": "-0.391543"},
+  {"group": "U4_rep2", "axis1": "-0.284927", "axis2": "-0.276140"}
+];

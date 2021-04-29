@@ -1,0 +1,486 @@
+<html lang=”en”>
+  <head>
+    <meta charset="utf-8">
+    <title>MetaAmp Results Page</title>
+    
+    <link rel="stylesheet" href="css/metaamp.css">
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="qc/metaamp.raw.stats.json"></script>
+    <script type="text/javascript" src="qc/metaamp.noprimer.stats.json"></script>
+    <script type="text/javascript" src="qc/metaamp.qc.stats.json"></script>
+    <!--METAAMP_MERGE_DATA_script type="text/javascript" src="qc/metaamp.merged.stats.json"></script_METAAMP_MERGE_DATA-->
+    <script>
+      function help(divid, btnid, closeid){
+      // Get the modal
+      var modal = document.getElementById(divid);
+      modal.style.display = "block";
+
+      // Get the button that opens the modal
+      var btn = document.getElementById(btnid);
+      
+      // Get the <span> element that closes the modal
+	var span = document.getElementById(closeid);
+	
+	// When the user clicks the button, open the modal
+	btn.onclick = function() {
+	modal.style.display = "block";
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	  span.onclick = function() {
+	  modal.style.display = "none";
+	  }
+	  
+	  // When the user clicks anywhere outside of the modal, close it
+	  window.onclick = function(event) {
+	  if (event.target == modal) {
+	  modal.style.display = "none";
+	  }
+	  }
+	  }
+    </script>
+
+    <script>
+      $(document).ready(function() {
+      $('article.tabs').tabs();
+
+      $('#qcstats').dataTable(
+      {
+      "aaData": qcdata,
+      "columns": qctablecol,  
+      bJQueryUI:false,
+      sPaginationType: "full_numbers"
+
+      });
+      
+      $('#trimstats').dataTable(
+      {
+      "aaData": trimdata,
+      "columns": trimtablecol,  
+      bJQueryUI:false,
+      sPaginationType: "full_numbers"
+
+      });
+      /* METAAMP_MERGE_SCRIPT
+      $('#mergestats').dataTable(
+      {
+      "aaData": mergedata,
+      "columns": mergetablecol,  
+      bJQueryUI:false,
+      sPaginationType: "full_numbers"
+      });
+      METAAMP_MERGE_SCRIPT */
+      
+      $('#rawstats').dataTable(
+      {
+      "aaData": rawdata,
+      "columns": rawtablecol,
+      
+      bJQueryUI:false,
+      sPaginationType: "full_numbers"
+
+      });
+      });
+    </script>
+
+  </head>
+
+  <body>
+    <div id="outform">
+      <div id="outline">
+	<div id="banner" ></div>
+	
+	<div id="title">
+	  <h1>MetaAmp Version 3.0 </h1>
+	</div>
+	<div id="sep"></div>
+
+	
+	<p>Click the Download tab to download the results to browse it offline. We only keeps the results on the server for a week</p>
+	<p>Or click the other tabs to browse the result online</p>
+	
+	<section>
+	  <article id="tabs-nohdr" class="tabs">
+	    <ul>
+	      <li><a href="#tabs-nohdr-1">Download</a></li>
+	      <li><a href="#tabs-nohdr-2">QC Summary</a></li>
+	      <li><a href="#tabs-nohdr-3">METAAMP_TYPE & Taxonomy</a></li>
+	      <li><a href="#tabs-nohdr-5">&alpha;,&beta;-Diversity</a></li>
+	      <li><a href="#tabs-nohdr-6">Hypothesis Testing</a></li>
+
+	    </ul>
+	    <div id="tabs-nohdr-1">
+	      <p><b>MetaAmp analysis results:</b></p>
+	      <p> Analysis name: METAAMP_ANALYSISNAME</p>
+	      <p>metaamp command: METAAMP_INPUT_COMMAND</p>
+	      <p>Submitted by METAAMP_USER_EMAIL</p>
+	      <p>METAAMP_SUBMIT_TIME</p>
+	      <p class="thick"><a href="../results.zip">Download a packaged file containing all results in this page</a></p>
+	    </div>
+
+	    <div id="tabs-nohdr-2">
+	      
+	      
+	      <h4>Input raw reads statistical summary</h4>
+	      <hr/>
+	      <div style="height: 20px; "></div>
+	      <table id="rawstats" class="cell-border" width="85%" cellspacing="0">
+		<thead>
+		</thead>
+	      </table>
+	      
+	      <h4>Reads statistical summary after get rid of primers</h4>
+	      <hr/>
+	      <div style="height: 20px; "></div>
+	      <table id="trimstats" class="cell-border" width="85%" cellspacing="0">
+		<thead>
+		</thead>
+	      </table>
+	      
+	      <!--METAAMP_MERGE_HTMLh4>Reads statistical summary after paired end data merging</h4>
+		  <hr/>
+		  <div style="height: 20px; "></div>
+		  <table id="mergestats" class="cell-border" width="85%" cellspacing="0">
+		    <thead>
+		    </thead>
+	      </table METAAMP_MERGE_HTML-->
+	      <h4>Reads statistical summary after quality trimming and filtering</h4>
+	      <hr/>
+	      <div style="height: 20px; "></div>
+	      <table id="qcstats" class="cell-border" width="85%" cellspacing="0">
+		<thead>
+		</thead>
+	      </table>
+	    </div>
+
+	    <div id="tabs-nohdr-3">
+	      
+	      <ul id="lfile">
+		<li><a href="METAAMP_TYPE_and_taxonomy/METAAMP_ANALYSISNAME.METAAMP_TYPE.fasta" title="METAAMP_TYPE sequence, header file is in the format of :otuid|sequence count" target="vis">METAAMP_TYPE sequence file</a></li>
+		<li><a href="METAAMP_TYPE_and_taxonomy/METAAMP_ANALYSISNAME.METAAMP_TYPE.taxonomy" title="The consensus taxonomy of each OTU" target="vis">METAAMP_TYPE to taxonomy assignmet</a></li> 
+		<li><a href="METAAMP_TYPE_and_taxonomy/METAAMP_ANALYSISNAME.taxonomy.summary.txt" title="METAAMP_TYPE taxonomic distribution" target="vis">Taxonomy distribution summary</a>
+		  <a href="html/taxontree.html" target="vis"><img src="images/chart.gif" height="20"></a></li>
+		<li><a href="METAAMP_TYPE_and_taxonomy/METAAMP_ANALYSISNAME.METAAMP_TYPE.taxonomy.summary.txt" title="METAAMP_TYPE table" target="vis">METAAMP_TYPE and taxonomy distribution summary</a></li>
+		<li><a href="METAAMP_TYPE_and_taxonomy/METAAMP_ANALYSISNAME.METAAMP_TYPE.taxonomy.summary.relabund.txt" title="METAAMP_TYPE table" target="vis">METAAMP_TYPE and taxonomy distribution summary: relative abundance</a></li>
+	      </ul>
+	    </div>
+	    <div id="tabs-nohdr-5">
+	      <div id="wrap">
+		<div id="left_col">
+		  <h3> Without subsampling or rarefying</h3>
+		</div>
+		<div id="right_col">
+		  <h3> With subsampling or rarefying &nbsp;&nbsp; <input TYPE="button" id="rarefy" class="btn" name="HELP" value="HELP" onclick="help('rarefyModal', 'rarefy', 'closeRarefy');"></h3>
+		</div>
+
+		<div id="rarefyModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close" id="closeRarefy">&times;</span>
+		    <p>There's a subtle, but very important, difference between subsampling and rarefaction. Subsampling will draw a desired number of sequences from each sample - once. This is what Mothur do for things like metastats or machine learning models. For alpha and beta diversity, Mothur rarefy the data. This is subsampling 1000 times and averaging the 1000 subsamples. With the large number of randomizations, you average out the effects of getting lucky/unlucky.</p>
+		  </div>
+		</div>
+
+	      </div>
+	      <p class="thick">»  METAAMP_TYPE and &alpha;-diversity measurements</p>
+
+	      <div id="wrap">
+		<div id="left_col">
+		  <ul id="lfile">
+		    
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.shared" title="The data in a shared file represents the number of times that an METAAMP_TYPE is observed in multiple samples." target="vis" >Mothur format shared file</a><a href="https://www.mothur.org/wiki/Shared_file" target="vis"><img src="images/help.jpg" height="20" class="help"><a href="html/METAAMP_ANALYSISNAME.shared_heatmap.html" target="vis"><img src="images/heatmap.png" class="chart"></a></li>
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.relabund" title="relabund file represent relative abundance of an METAAMP_TYPE over the samples" target="vis" >METAAMP_TYPE relabund file</a><a href="https://www.mothur.org/wiki/Shared_file" target="vis"><img src="images/help.jpg" height="20" class="help"></a> <a href="html/METAAMP_ANALYSISNAME.relabund_heatmap.html" target="vis"><img src="images/heatmap.png" class="chart"></a> <a href="html/METAAMP_ANALYSISNAME.relabund_bubble_plot.html" target="vis"><img src="images/correlogram.jpg" class="chart"></a></li>
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.groups.rarefaction" title="Rarefaction curve describing the number of METAAMP_TYPEs observed as a function of sampling effort" target="vis">Rarefaction curve</a><a href="https://www.mothur.org/wiki/Rarefaction" target="vis"><img src="images/help.jpg" height="20" class="help"></a><a href="html/METAAMP_ANALYSISNAME.groups.rarefaction.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+		    <li class=""><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.groups.summary" title="Alpha diversity indices using different calculator" target="vis">Alpha diversity index</a><a href="https://www.mothur.org/wiki/Summary.single" target="vis"><img src="images/help.jpg" height="20" class="help"></a><a href="html/METAAMP_ANALYSISNAME.groups.summary.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.shared" title="The data in a shared file represents the number of times that an METAAMP_TYPE is observed in multiple samples." target="vis" >Mothur format shared file</a><a href="html/METAAMP_ANALYSISNAME.subsample.shared_heatmap.html" target="vis"><img src="images/heatmap.png" height="20" class="chart"></a></li>
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.relabund" title="relabund file represent relative abundance of an METAAMP_TYPE over the samples" target="vis" >METAAMP_TYPE relabund file</a><a href="html/METAAMP_ANALYSISNAME.subsample.relabund_heatmap.html" target="vis"><img src="images/heatmap.png" height="20" class="chart"></a> <a href="html/METAAMP_ANALYSISNAME.subsample.relabund_bubble_plot.html" target="vis"><img src="images/correlogram.jpg" class="chart"></a></li>
+
+		    <li><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.groups.rarefaction" title="Rarefaction curve describing the number of METAAMP_TYPEs observed as a function of sampling effort" target="vis">Rarefaction curve</a><a href="html/METAAMP_ANALYSISNAME.subsample.groups.rarefaction.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+		    <li class=""><a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.groups.summary" title="Alpha diversity indices using different calculator" target="vis">Alpha diversity index</a><a href="html/METAAMP_ANALYSISNAME.subsample.groups.summary.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a></li>
+		  </ul>
+		</div>
+	      </div>
+
+	      
+	     
+	      <p class="thick">» &beta;-diversity measurements: PCoA analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="pcoa" value="HELP" onClick="help('pcoaModal', 'pcoa', 'closePcoa');"></p>
+
+	      <div id="pcoaModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closePcoa">&times;</span>
+		  <p>Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible.loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.The axes file contains the plotting coordinates for graphing the results</p>
+		</div>
+	      </div>
+
+	      <div id="wrap">
+		<div id="left_col">
+		  <ul id="lfile">
+		    <li>Jclass: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.pcoa.axes"  target="vis">pcoa.axes </a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Jest: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.pcoa.axes">pcoa.axes </a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Jest: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis: <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.pcoa.loadings" target="vis" title="Principal Coordinates (PCoA) uses an eigenvector-based approach to represent multidimensional data in as few dimesnsions as possible. Loadings file will tell you what fraction of the total variance in the data are represented by each of the axes.">pcoa.loadings</a> & <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.pcoa.axes" target="vis">pcoa.axes</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.pcoa.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+		</div>
+	      </div>
+
+	      <p class="thick">» &beta;-diversity measurements: Tree analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="tree" value="HELP" onClick="help('treeModal', 'tree', 'closeTree');"></p>
+
+	      <div id="treeModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeTree">&times;</span>
+		  <p>generate a newick-formatted tree file that describes the dissimilarity (1-similarity) among multiple samples. Samples are clustered using the UPGMA algorithm using the distance between communities as calculated using any of the calculators describing the similarity in community membership or structure. Dissimilarity is calculated as one minus the similarity.The newick format tree file can be visualized in softwre like Dendroscope.</p>
+		</div>
+	      </div>
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre" target="vis" >newick format sample relation tree</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Jest <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre" target="vis" >newick format sample relation tree</a>  &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a> &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Jest <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a>  &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre" target="vis">newick format sample relation tree</a>&nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+		</div>
+	      </div>
+
+
+	      <p class="thick">» &beta;-diversity measurements: NMDs analysis &nbsp;&nbsp; <input TYPE="button" class="btn" id="nmd" value="HELP" onClick="help('nmdModal', 'nmd', 'closeNmd');"></p>
+	      <div id="nmdModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeNmd">&times;</span>
+		  <p>non-metric multidimensional scaling (NMDS) tries to preserve the distance between samples using a user defined number of dimensions.The stress file contains the stress and R^2 values, which describe the quality of the ordination. Each line in this file represents a different iteration. The configuration obtained in the iteration with the lowest stress is reported in the axes file. Usually, they suggest that  a stress value below 0.20 is good (less than0.10 is very good). NMDS plots attempt to show ordinal distances between samples as accurately as possible in two dimensions. It is important to report the stress of these plots, because a high stress value means that the algorithm had a hard time representing the distances between samples in 2 dimensions.</p>
+		</div>
+	      </div>
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+		  <ul id="lfile">
+		    <li> Jclass <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li> Jest <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li> Jclass <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li> Jest <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Thetayc <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		    <li>Braycurtis <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.nmds.stress" target="vis">stress</a>, <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.nmds.iters" target="vis">iters</a>, and <a href="alpha_and_beta_diversity/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.nmds.axes" target="vis">axes</a> files &nbsp;&nbsp;<a href="html/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.nmds.html" target="vis"><img src="images/chart.gif" height="20" class="chart"></a>
+		  </ul>
+
+
+		</div>
+	      </div>
+
+	    </div>
+
+
+	    <div id="tabs-nohdr-6">
+	      <div id="wrap">
+		<div id="left_col">
+		  <h3> Without subsampling or rarefying</h3>
+		</div>
+		<div id="right_col">
+		  <h3> With subsampling or rarefying</h3>
+		</div>
+	      </div>
+
+	      <p  class="thick">» Parsimony testing &nbsp;&nbsp; <input TYPE="button" class="btn" id="parsimony" value="HELP" onClick="help('parsimonyModal', 'parsimony', 'closeParsimony');"> </p>
+	      <div id="parsimonyModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeParsimony">&times;</span>
+		  <p>In mothur, the parsimony method (aka p-test) is a generic test that describes whether two or more communities have the same structure. The significance of the test statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+		</div>
+	      </div>
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a> <a href="https://www.mothur.org/wiki/Parsimony" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		  </ul>
+		</div>
+		<div id="right_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre.parsimony" target="vis">tre.parsimony</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre.psummary" target="vis">tre.psummary</a>
+		  </ul>
+		</div>
+	      </div>
+	      <p  class="thick">» Unifrac.weighted &nbsp;&nbsp; <input TYPE="button" class="btn" id="wunifrac" value="HELP" onClick="help('wunifracModal', 'wunifrac', 'closeWunifrac');"></p>
+
+	      <div id="wunifracModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeWunifrac">&times;</span>
+		  <p>Mothur implements the weighted UniFrac algorithm.The UniFrac methods are generic tests that describes whether two or more communities have the same structure. The significance of the test statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+		</div>
+	      </div>
+
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a> <a href="https://www.mothur.org/wiki/Unifrac.weighted" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre1.weighted" target="vis">weighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre1.wsummary" target="vis">wsummary</a>
+		  </ul>
+		</div>
+	      </div>
+
+	      <p  class="thick">» Unifrac.unweighted &nbsp;&nbsp; <input TYPE="button" class="btn" id="uunifrac" value="HELP" onClick="help('uunifracModal', 'uunifrac', 'closeUunifrac');"></p>
+
+	      <div id="uunifracModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeUunifrac">&times;</span>
+		  <p>Mothur implements the unweighted UniFrac algorithm.The UniFrac methods are generic tests that describes whether two or more communities have the same structure. The significance of the tes	 statistic can only indicate the probability that the communities have the same structure by chance. The value does not indicate a level of similarity.</p>
+		</div>
+	      </div>
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a><a href="https://www.mothur.org/wiki/Unifrac.unweighted" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.tre1.unweighted" target="vis">unweighted</a> & <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.uwsummary" target="vis">uwsummary</a>
+		  </ul>
+		</div>
+	      </div>
+	      <p  class="thick">» AMOVA(Analysis of Molecular Variance) &nbsp;&nbsp; <input TYPE="button" class="btn" id="amova" value="HELP" onClick="help('amovaModal', 'amova', 'closeAmova');"> </p>
+	      <div id="amovaModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeAmova">&times;</span>
+		  <p>Analysis of molecular variance is a nonparametric analog of traditional analysis of variance. This method is widely used in population genetics to test the hypothesis that genetic diversity within two populations is not significantly different from that which would result from pooling the two populations (Excoffier et al., 1992; Anderson, 2001; Martin, 2002). Amova  tests whether the centers of the clouds representing a group are more separated than the variation among samples of the same treatment.</p>
+		</div>
+	      </div>
+
+
+
+	      <div id="wrap">
+		<div id="left_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a> <a href="https://mothur.org/wiki/Amova" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.amova" target="vis">amova testing result </a>
+		  </ul>
+		</div>
+	      </div>
+	      <p  class="thick">» HOMOVA (Homogenity of Molecular Variance) &nbsp;&nbsp; <input TYPE="button" class="btn" id="homova" value="HELP" onClick="help('homovaModal', 'homova', 'closeHomova');"></p>
+
+	      <div id="homovaModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id="closeHomova">&times;</span>
+		  <p>Homogeneity of molecular variance (HOMOVA) is a nonparametric analog of Bartlett’s test for homo- geneity of variance, which has been used in population genetics to test the hypothesis that the genetic diversity within two or more populations is homogeneous (Stewart and Excoffier, 1996);</p>
+		</div>
+	      </div>
+
+
+	      <div id="wrap">
+		<div id="left_col">
+
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jclass.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a> <a href="https://mothur.org/wiki/Homova" target="vis"><img src="images/help.jpg" height="20" class="help"></a></li>
+
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.jest.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.thetayc.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.braycurtis.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		  </ul>
+		</div>
+		<div id="right_col">
+		  <ul id="lfile">
+		    <li>Jclass <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jclass.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		    <li>Jest <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.jest.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		    <li>Thetayc <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.thetayc.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		    <li>Braycurtis <a href="hypothesis_testing/METAAMP_ANALYSISNAME.subsample.braycurtis.METAAMP_LABEL.lt.homova" target="vis">homova testing result </a>
+		  </ul>
+		</div>
+	      </div>
+	  </article>
+	</section>
+	<div id="sep"></div>
+	<div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="https://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="https://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="https://www.ucalgary.ca">Univeristy of Calgary</a></div>
+	</div>
+      </div>
+  </body>    
+</html>

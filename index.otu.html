@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta NAME ="Description" CONTENT =" Energy Bioengineering Group bioinformatics tool metaamp accepts fasta, fastq format next generation 16s, 18s rRNA sequences (e.g. 454, Illumina single or paired end ) and clusters them into OTUs, generate taxonoic classification and biodiversity indics of the input community">
+
+    <meta NAME ="Keywords" CONTENT ="Next generation sequencing, 454, MiSeq, Paired end, 16s rRNA, 18s rRNA, OTU, taxonomic classification, clustering, alpha diversity, beta diversity, community comparison, University of Calgary,Geoscience,Energy Bioengineering Group, Xiaoli Dong,Marc Strous">
+
+    <link rel=stylesheet type="text/css" href="css/metaamp.css" title="default metaamp styles"/>
+
+    <title>MetaAmp: Amplicon sequening of conserved marker genes - OTUs</title>
+    <SCRIPT TYPE="text/javascript" SRC="js/metaamp.js"></SCRIPT>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function () {
+      $('#merge').show();
+      $('#pair').click(function () {
+      $('#merge').show();
+
+      });
+      $('#single').click(function () {
+      $('#merge').hide();
+
+      });
+      });
+      function blinker() {
+      $('.blink_me').fadeOut(500);
+      $('.blink_me').fadeIn(500);
+      }
+
+      setInterval(blinker, 1500);
+
+
+    </script>
+    <style>
+      
+    </style>
+  </head>
+
+  <body>
+    <div id="outform">
+      <form id="metaamp" name="metaamp" METHOD ="post" ENCTYPE="multipart/form-data">
+	<div id="outline">
+	  
+	  <div id="banner" ></div>
+	  <div id="navcont" style="text-align: right;">
+            <ul id="nav">
+              <li><a href="help.html">Help</a></li>
+	      <li><a href="changelog.html">Changelog</a></li>
+              <li><a href="index.asv.html">ASV Analysis</a></li>
+              <li><a href="index.otu.html">OTU Analysis</a></li>
+              <li><a href="index.html">Home</a></li>
+	    </ul>
+	  </div>
+	  <div id="pagetitle">
+	    <h1>MetaAmp Version 3.0 - OTU based amplicon analysis</h1>
+	  </div>
+	  <p>MetaAmp is designed to to analyze the amplicon sequening of conserved marker genes (e.g. 16S, 18S rRNA) from complex microbial communities.  Its OTU analysis component clusters amplicon sequences into operational taxonomic units (OTUs) using <a href="https://www.nature.com/articles/nmeth.2604">UPARSE</a>. MetaAmp produces alpha and beta diversity based on the inferred OTUs for the the input microbial communities. MetaAmp also assigns taxonomy to each OTU and generates taxonomic profiles. MetaAmp accepts single or paired-end sequencing data in <b>fasta or fastq format </b>from various sequencing platforms (not Nanopore).</p>
+	  <p>To explore the MetaAmp OTU analysis outputs, please check</p>
+	  <div style="margin-bottom: 30px;">
+	    <a href="demo/demo_otu/index.html" class="demo" target="demo">MetaAmp OTU Analysis Output Demo</a>
+	  </div>
+
+	  <div id="sep"></div>
+
+	  <div id="wrap">
+	    <div id="left_col">Analysis Name:<img src="images/help.jpg" class="help" id="name" onclick="help('nameModal', 'name', 'closeName');"></div>
+	    <div id="nameModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeName">&times;</span>
+		  <p>The analysis name is a required field and only takes <b>letters, numeric digits, and underscores.</b> No spaces are allowed in the analysis name.</p>
+		</div>
+	    </div>
+	    <div id="right_col"> <input type="text" id="analysisname" name="analysisname" placeholder="Enter one-word analysis name" pattern="[A-Za-z0-9_]+" title="Only characters/numbers allowed" required></div>
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Email address:<img src="images/help.jpg" class="help" id="emailhelp" onclick="help('emailhelpModal', 'emailhelp', 'closeEmailhelp');"></div>
+	     <div id="emailhelpModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeEmailhelp">&times;</span>
+		  <p>The email address is a required field. MetaAmp uses the email address to notify user the occuring errors during the analysis and to send the result link to users after the analysis finishes. Please provide a valid email address.</p>
+		</div>
+	     </div>
+	    <div id="right_col"><input type="email" id="email" name="email" placeholder="Enter a valid email address" required></div>
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Sequence format:<img src="images/help.jpg" class="help" id="format" onclick="help('formatModal', 'format', 'closeFormat');"></div>
+	    <div id="formatModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeFormat">&times;</span>
+		  <p>While MetaAmp OTU analysis component can take either <b><a href="http://en.wikipedia.org/wiki/FASTA_format">fasta</a> or <a href="http://en.wikipedia.org/wiki/FASTQ_format">fastq</a> </b> format sequence files as inputs for the analysis</p>
+		</div>
+	    </div>
+	    <div id="right_col">
+	      <input type="radio" id="fastq" name="seqformat" value="fastq" checked="checked" >Fastq
+	      &nbsp;&nbsp;<input id="fasta" type="radio" name="seqformat" value="fasta">Fasta
+	    </div>
+
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Sequencing type:</div>
+	    <div id="right_col">
+	      <input type="radio" id="pair" name="seqtype" value="paired" checked="checked">Paired-end
+	      &nbsp;&nbsp;<input id="single" type="radio" name="seqtype" value="single">Single
+	    </div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Upload archived sequence file (demultiplexed):<img src="images/help.jpg" class="help" id="archiveinfo" onclick="help('archiveinfoModal', 'archiveinfo', 'closeArchiveinfo');"></div>
+	     <div id="archiveinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeArchiveinfo">&times;</span>
+		  <p>Please check <a href="help.html">Help</a> on how to make sequence archive file</p>
+		</div>
+	     </div>
+	    <div id="right_col"><input type="file" id="seqArchiveFile" name="seqArchiveFile" required/></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Upload mapping file (text format):<img src="images/help.jpg" class="help" id="mappinginfo" onclick="help('mappinginfoModal', 'mappinginfo', 'closeMappinginfo');"></div>
+	     <div id="mappinginfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMappinginfo">&times;</span>
+		  <p>Please check <a href="help.html">Help</a> on how to make sequence mapping file</p>
+		</div>
+	     </div>
+	    <div id="right_col"><input type="file" id="mappingFile" name="mappingFile" required/></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Forward amplicon primers (5'->3'):<img src="images/help.jpg" class="help" id="primer" onclick="help('primerModal', 'primer', 'closePrimer');"></div>
+	    <div id="primerModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closePrimer">&times;</span>
+		  <p>To know more, please check <a href="help.html">Help</a></p>
+		</div>
+	    </div>
+	    <div id="right_col"><textarea id="fprimers" name="fprimers" placeholder="Primer can contain IUPAC code" pattern="[acgturymkwsbdhvnACGTURYMKWSBDHVN]+" ></textarea></div>
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Reverse amplicon primers (5'->3'):</div>
+	    <div id="right_col"><textarea id="rprimers" name="rprimers" placeholder="Primer can contain IUPAC code" pattern="[acgturymkwsbdhvnACGTURYMKWSBDHVN]+"></textarea></div>
+	  </div>
+	 	 
+	  <div id="wrap">
+            <div id="left_col">Similarity cutoff:<img src="images/help.jpg" class="help" id="similarityinfo" onclick="help('similarityinfoModal', 'similarityinfo', 'closeSimilarityinfo');"></div>
+	     <div id="similarityinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeSimilarityinfo">&times;</span>
+		  <p>This is the OTU clustering threshold. 0.97 means 97% identity</p>
+		</div>
+	      </div>
+            <div id="right_col">
+              <select name="similarity">
+		<option value="0.97" selected>0.97</option>
+		<option value="0.98">0.98</option>
+		<option value="0.99">0.99</option>
+		<!-- option value="1">1</option -->
+              </select>
+            </div>
+	  </div>
+
+	  <!-- todo; paired end radio button, controll merge option or merge reads stats button -->
+	  <div id="wrap">
+
+	    <br>
+	    <input type="submit" name="otus" value="Get OTUs" onClick="if(validateSubmit() == false)return false;defineAction('otus');">
+	    &nbsp;&nbsp;<input type="reset" value="Clear Form" />
+
+	  </div>
+	  <div id="sep"></div>
+
+	  <div id="merge">
+	    <h3>Paired end merging options </h3>
+
+	    <div id="wrap">
+	      <div id="left_col">Minimum length of overlap:<img src="images/help.jpg" class="help" id="overleninfo" onclick="help('overleninfoModal', 'overleninfo', 'closeOverleninfo');"></div>
+	      <div id="overleninfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeOverleninfo">&times;</span>
+		  <p>The length of the overlap regions of the paired-end reads shorter than this defined number will be discarded.</p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="overlen" name="minoverlen" min="8" value="50"></div>
+	    </div>
+
+	    <div id="wrap">
+	      <div id="left_col">Maximum number of mismatches in the overlap region:<img src="images/help.jpg" class="help" id="maxdiffsinfo" onclick="help('maxdiffsinfoModal', 'maxdiffsinfo', 'closeMaxdiffsinfo');"></div>
+	       <div id="maxdiffsinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMaxdiffsinfo">&times;</span>
+		  <p>It defines the number of the mismatches allowed in the overlap regions during the paired-end sequence merging.The paired-end reads will be discarded if the the number of the mismatches in the overlap regions are greater than this number. </p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="maxdiffs" name="maxdiffs" min="0" value="0"></div>
+	    </div>
+
+
+	    <div id="sep"></div>
+	  </div>
+	  <h3>Quality filtering options </h3>
+
+	  <div id="wrap">
+	    <div id="left_col">Maximum number of differences to the primer sequence:<img src="images/help.jpg" class="help" id="pdiffsinfo" onclick="help('pdiffsinfoModal', 'pdiffsinfo', 'closePdiffsinfo');"></div>
+	     <div id="pdiffsinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closePdiffsinfo">&times;</span>
+		  <p>It defines the allowed differences in the primer region. If the differences in the primer regions greater than this number, the reads will be discarded.</p>
+		</div>
+	     </div>
+	    <div id="right_col"><input type="number" id="pdiffs" name="pdiffs" step="1" value="0" min="0"></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Maximum number of expected errors:<img src="images/help.jpg" class="help" id="maxeeinfo" onclick="help('maxeeinfoModal', 'maxeeinfo', 'closeMaxeeinfo');"></div>
+	    <div id="maxeeinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMaxeeinfo">&times;</span>
+		  <p>Reads with higher than maxEE expected errors will be discarded. Expected errors are calculated from the nominal definition of the quality score: EE = sum(10^(-Q/10). To get a better understanding of this option, please read: <a href="https://academic.oup.com/bioinformatics/article/31/21/3476/194979">Error filtering, pair assembly and error correction for next-generation sequencing reads</a></li></p>
+		</div>
+	    </div>
+	    <div id="right_col"><input type="number" id="maxee" name="maxee" step="0.01" value="1" min="0"></div>
+	  </div>
+
+	  <!-- div id="fixlen" -->
+	  <div id="wrap">
+	    <div id="left_col">Trim amplicon to a fixed length:<img src="images/help.jpg" class="help" id="truncleninfo" onclick="help('truncleninfoModal', 'truncleninfo', 'closeTruncleninfo');"></div>
+	    <div id="truncleninfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeTruncleninfo">&times;</span>
+		  <p>For the single-read sequencing, trimming the quality controlled reads to a fixed length is critically important for achieving the best results because the clustering algorithm considers all gaps to be differences, including terminal gaps. The length should be propotional to your sequencing target region length (the region length between your forward and reverse primer). The reads shorter than the defined length will be discarded</p>
+		</div>
+	    </div>
+	    
+	    <div id="right_col"><input type="number" id="trunclen" name="trunclen" min="0" value="350"></div>
+	  </div>
+	  <!-- /div -->
+	  <div id="sep"></div>
+	  <div id="foot">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a>
+	  </div>
+	  <div id="counter">
+	    <!-- hitwebcounter Code START -->
+	    Visitors Counter: <a href="http://www.hitwebcounter.com" target="_blank">
+	      <img src="http://hitwebcounter.com/counter/counter.php?page=6496524&style=0027&nbdigits=5&type=page&initCount=1800" border="0" ></a>
+	  </div>
+
+
+	  <div>
+
+	    <script>
+	      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	      ga('create', 'UA-56835302-1', 'auto');
+	      ga('send', 'pageview');
+
+	    </script>
+	  </div>
+	</div>
+      </form>
+
+
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-90098813-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
+
+

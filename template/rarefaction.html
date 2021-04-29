@@ -1,23 +1,71 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <title>test</title>
+    <link rel=stylesheet type="text/css" href="../css/metaamp.css" title="default metaamp styles" />
+    <script type="text/javascript" src="https://ebg.ucalgary.ca/metaamp/js/jquery-2.1.3.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/themes/high-contrast-light.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="ebgmetaampjson"></script>
+    <script>
+      
+     
 
-<head>
-    <title>Rarefaction curves</title>
-    <meta charset="utf-8" />
-    <link rel=stylesheet type="text/css" href="http://ebg.ucalgary.ca/metaamp/css/metaamp.css"
-    title="default metaamp styles" />
-    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/highcharts.js"></script>
-    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/exporting.js"></script>
-    <script type="text/javascript" src="http://ebg.ucalgary.ca/metaamp/js/Highcharts-5.0.5/code/modules/data.js"></script>
-    <script type="text/javascript">
-        $.get('ebgmetaamptsv', function (csv) {
-            $('#rarefaction')
-                .highcharts({
-                    colors: ['#0000ff', '#008080', '#ED561B',
-                        '#00FF00', '#8000000', '#FF0000',
-                        '#00FFFF'
-                    ],
-                    chart: {
+     
+      $(document)
+      .ready(function () {
+      
+      
+      console.log(data);
+      console.log(tablecol);
+      
+      var header = tablecol.map(function (d) {
+      return d.data;
+      });
+      
+      console.log(header);
+      
+      var cat = data.map(function (d) {
+      return +d.numsampled;
+      });
+      console.log(cat);
+      
+      header.shift();
+      var rare_data = [];
+      header.forEach(item => {
+      
+      var json = data.map(function (d) {
+      
+      return +d[item];
+      });
+      //console.log(json);
+      if(!item.match(/lci|hci/)){
+      rare_data.push({"name": item, "data": json});
+      }
+      });
+      console.log(cat);
+      console.log("xiaoli");
+      console.log(rare_data);
+     
+     
+      
+       var chart1 = Highcharts.chart('rare', {
+    title: {
+        text: 'Rarefaction curves'
+    },
+
+    subtitle: {
+        text: 'When resizing the window or the frame, the chart should resize'
+    },
+
+ chart: { height: (9 / 16 * 100) + '%', // 16:9 ratio
                         type: 'line',
                         borderWidth: 2,
                         spacingLeft: 20,
@@ -41,30 +89,9 @@
                         plotShadow: true,
                         plotBorderWidth: 1
                     },
-                    data: {
-                        csv: csv,
-                        complete: function (option) {
-                            $.each(option.series, function () {
-                                if (this.name.match(
-                                        /hci|lci/)) {
-                                    this.data = [];
-                                    //alert(this.name);
-                                    //alert(this.data);
-                                    //this.hide();
-                                }
-                            });
-                        }
-                    },
-                    title: {
-                        text: 'Rarefaction Curves',
-                        margin: 30,
-                        style: {
-                            color: '#000',
-                            font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
-                        }
-                    },
-                    xAxis: {
-                        gridLineWidth: 1,
+    xAxis: {
+        categories: cat,
+      gridLineWidth: 1,
                         lineColor: '#000',
                         tickColor: '#000',
                         labels: {
@@ -74,16 +101,11 @@
                             }
                         },
                         title: {
-                            text: 'Number of reads sampled',
-                            style: {
-                                color: '#333',
-                                fontWeight: 'bold',
-                                fontSize: '12px',
-                                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
+                            text: 'Number of reads sampled'
+                           
+      }
+    },
+     yAxis: {
                         minorTickInterval: 'auto',
                         lineColor: '#000',
                         lineWidth: 1,
@@ -96,53 +118,60 @@
                             }
                         },
                         title: {
-                            text: 'Number of observed OTUs',
-                            style: {
-                                color: '#333',
-                                fontWeight: 'bold',
-                                fontSize: '12px',
-                                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-                            }
+                            text: 'Number of observed OTUs'
+                           
                         }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
+                    }, 
+
+    series: rare_data,
+      plotOptions: {
                         series: {
                             marker: {
-                                enabled: false,
+                                enabled: true,
                                 radius: 3,
                             },
                             dataLabels: {
                                 enabled: false
                             },
                             tooltip: {
-                                enabled: true,
-                                headerFormat: '<b>{series.name}</b><br/>',
-                                pointFormat: '{point.x},{point.y}'
+                                enabled: true
+                               
                             }
                         }
                     },
                     credits: {
                         enabled: false
                     }
-                })
-        });
-    </script>
-</head>
+});
 
-<body bgcolor="#ffffff">
-    <div id="outform"> <a href="/metaamp/index.html" id="logo">MetaAmp Logo</a>
-        <h1>MetaAmp Version 2.0 </h1>
-        <div id="sep"></div>
-        <div id="space"></div>
-        <div id="result">
-            <div id="rarefaction" style="width:70%; margin-left: auto; margin-right:auto;"></div>
-            <div id="space"></div>
-            <div id="sep"></div>
-            <div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong\@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous\@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a></div>
-        </div>
-</body>
+      
+     
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="outform">
+     <div id="outline">
+	<div id="banner" ></div>
+	<div id="title">
+	  <h1>MetaAmp Version 3.0 </h1>
+	</div>
+	<div id="sep"></div>
+	
+	<div id="space"></div>
+     
+      <div id="result">
+       
+        <div id="rare"></div>
+
+        
+      </div>
+      <div class="space"></div>
+      <div id="sep"></div>
+      <div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong\@ucalgary.ca">Xiaoli Dong</a>            or <a HREF="mailto:mstrous\@ucalgary.ca">Marc Strous</a>
+        <br><a href="https://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a>            in <a href="https://geoscience.ucalgary.ca/">Department of Geoscience</a>            at <a href="https://www.ucalgary.ca">Univeristy of Calgary</a> </div>
+    </div>
+  </body>
 
 </html>

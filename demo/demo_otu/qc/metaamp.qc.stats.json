@@ -1,0 +1,38 @@
+qctablecol = [
+  {"title": "filename", "data": "filename"},
+  {"title": "count", "data": "count"},
+  {"title": "total_bp", "data": "total_bp"},
+  {"title": "min", "data": "min"},
+  {"title": "max", "data": "max"},
+  {"title": "mean", "data": "mean"},
+  {"title": "median", "data": "median"},
+  {"title": "mode", "data": "mode"},
+  {"title": "n50", "data": "n50"},
+  {"title": "std", "data": "std"}
+];
+qcdata = [
+  {"filename": "C1_rep1", "count": "85853", "total_bp": "30048550", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C1_rep2", "count": "52009", "total_bp": "18203150", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C2_rep1", "count": "120204", "total_bp": "42071400", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C2_rep2", "count": "29044", "total_bp": "10165400", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C3_rep1", "count": "21814", "total_bp": "7634900", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C3_rep2", "count": "83300", "total_bp": "29155000", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C4_rep1", "count": "98910", "total_bp": "34618500", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "C4_rep2", "count": "37137", "total_bp": "12997950", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P1_rep1", "count": "107855", "total_bp": "37749250", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P1_rep2", "count": "59973", "total_bp": "20990550", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P2_rep1", "count": "56013", "total_bp": "19604550", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P2_rep2", "count": "129295", "total_bp": "45253250", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P3_rep1", "count": "46123", "total_bp": "16143050", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P3_rep2", "count": "18691", "total_bp": "6541850", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P4_rep1", "count": "116986", "total_bp": "40945100", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "P4_rep2", "count": "75733", "total_bp": "26506550", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U1_rep1", "count": "41650", "total_bp": "14577500", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U1_rep2", "count": "8314", "total_bp": "2909900", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U2_rep1", "count": "88641", "total_bp": "31024350", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U2_rep2", "count": "95182", "total_bp": "33313700", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U3_rep1", "count": "38102", "total_bp": "13335700", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U3_rep2", "count": "62390", "total_bp": "21836500", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U4_rep1", "count": "110918", "total_bp": "38821300", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"},
+  {"filename": "U4_rep2", "count": "106091", "total_bp": "37131850", "min": "350", "max": "350", "mean": "350.00", "median": "350.00", "mode": "350", "n50": "350", "std": "0.00"}
+];

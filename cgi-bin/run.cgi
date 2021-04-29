@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/gpfs/ebg_data/lib/perl/bin/perl
 
 # The environment variable defined here are propagated to all Perl scripts in
 # $ENV{METAAMPHOME}/bin directory through the "env perl" command when invoking
@@ -6,13 +6,13 @@
 BEGIN {
     # Web document root directory
     $ENV{METAAMPHOME} = "/export/web/metaamp";
-    $ENV{PERL5LIB} = "/usr/local/share/perl5/lib/perl5:/export/home/xdong/perl5/lib/perl5";
+    $ENV{PERL5LIB} = "/export/home/xdong/perl5/lib/perl5";
     #get rid of "TERM environment variable not set." message
     $ENV{TERM}="xterm";
-    $ENV{PATH} = "$ENV{METAAMPHOME}/bin:$ENV{METAAMPHOME}/programs:$ENV{METAAMPHOME}/programs/mothur:$ENV{PATH}";
+    $ENV{PATH} = "$ENV{METAAMPHOME}/bin:$ENV{METAAMPHOME}/programs:$ENV{METAAMPHOME}/programs/mothur:/gpfs/ebg_data/programs/cutadapt/bin:$ENV{PATH}";
 
 }
-
+use lib "/gpfs/home/xdong/perl5/lib/perl5" ;
 use strict;
 use warnings;
 use CGI;
@@ -24,7 +24,7 @@ use Cwd;
 use Archive::Extract;
 use File::Path qw(make_path remove_tree);
 use Cwd qw(getcwd);
-
+use Encode;
 
 # need either this or to explicitly flush stdout, etc.
 $| = 1;
@@ -52,12 +52,12 @@ my $trunclen = $query->param("trunclen");
 #my $action = $query->url_param("action");
 my $pdiffs = $query->param("pdiffs");
 my $scutoff = $query->param("similarity");
-my $genetype = $query->param("genetype");
+
 # Get file upload parameters
 my $seqArchiveFile = $query->param("seqArchiveFile");
 my $mappingFile = $query->param("mappingFile");
-
-
+my $url = "http://ebg.ucalgary.ca/metaamp";
+my $template_dir = "$ENV{METAAMPHOME}/template";
 # Catch CGI error when the post size exceeds POST_MAX and other unexpected errors happen
 catch_cgi_error();
 my @seqfiles;
@@ -84,6 +84,7 @@ open(MAP, $upload_mapping_file) or die "Could not open $upload_mapping_file to r
 while(<MAP>){
     chomp;
     next if (/^#/);
+    tr/\r/\n/;
     next if (!/\S+/);
     my @line = split(/\s+/, $_);
 
@@ -99,6 +100,10 @@ while(<MAP>){
 
 createOligoFile($fprimers, $rprimers);
 
+
+my $cmd = "metaamp.pl -map $upload_mapping_file -an $analysis -seqtype $seqtype -seqformat $seqformat -s $scutoff -minoverlen $minoverlen -maxdiffs $maxdiffs -trunclen $trunclen -maxee $maxee -oligos oligos.txt -pdiffs $pdiffs -email $email  >& debug.txt";
+my $metaamp_param = $cmd;
+
 save_job_info("JobInfo.txt");
 
 my $outDir = "results";
@@ -109,7 +114,7 @@ my $outLink = "$analysis\_$outDir";
 symlink $outDir, $outLink;
 copy "../../html/dummyResult.html", "$outDir/index.html";
 print_job_received_html();
-save_job_info("JobInfo.txt");
+
 
 ###############fork and return the browser to user
 if ( !defined(my $pid = fork())) {
@@ -120,12 +125,11 @@ elsif ($pid == 0) {
 # child
     close(STDOUT);close(STDIN);close(STDERR);
     #exec('./fork-long-process-test-process');     # lengthy processing
-    my $cmd = "metaamp.pl -map $upload_mapping_file -an $analysis -seqtype $seqtype -seqformat $seqformat -g $genetype -s $scutoff -minoverlen $minoverlen -maxdiffs $maxdiffs -trunclen $trunclen -maxee $maxee -oligos oligos.txt -pdiffs $pdiffs -email $email  >& debug.txt";
 
     #You'll need to bitshift the return value by 8 (or divide by 256) to get the return value of the program called:
     my $code = system($cmd) >> 8;
     if($code != 0){
-	if($code == 3){notify_internal_error("None of reads has passed quality control stage of the MetaAmp pipeline\nFor the detail reason please check quality control status file at:\nhttp://ebg.ucalgary.ca/metaamp/tmp/$machine_time-$analysis/MetaAmp.qcstatus.txt\n")}
+	if($code == 3){notify_internal_error("None of reads has passed quality control stage of the MetaAmp pipeline\nFor the detail reason please check quality control status file at:\n$url/tmp/$machine_time-$analysis/MetaAmp.qcstatus.txt\n")}
 	elsif($code == 4){notify_internal_error("Mapping file is not properly formated, check help page for how to make a mapping file\n")}
     }
 }
@@ -155,35 +159,35 @@ sub set_time_strings {
 # Uploads files input in the form by copying them into the
 # upload directory created.
 sub upload_files {
-  my ($ref_form_input_names, @files) = @_;
-  my @form_input_names = @{$ref_form_input_names};
-  for my $i (0..$#files) {
-    my $upload_filehandle = $query->upload($form_input_names[$i]);
-    open UPLOAD, ">$files[$i]"
-      or notify_internal_error("Can't open file $files[$i] to write: $!", "File upload failed");
-    binmode UPLOAD;
-    while (<$upload_filehandle>) {
-      print UPLOAD;
+    my ($ref_form_input_names, @files) = @_;
+    my @form_input_names = @{$ref_form_input_names};
+    for my $i (0..$#files) {
+	my $upload_filehandle = $query->upload($form_input_names[$i]);
+	open UPLOAD, ">$files[$i]"
+	    or notify_internal_error("Can't open file $files[$i] to write: $!", "File upload failed");
+	binmode UPLOAD;
+	while (<$upload_filehandle>) {
+	    print UPLOAD;
+	}
+	close UPLOAD;
     }
-    close UPLOAD;
-  }
 }
 
 # Prints an error message HTML, telling the user about the problem.
 # Usually asks the user to retry.
 sub print_error_web {
-  my ($heading, $instruction, @messages) = @_;
-  print "<html>\n<head>\n";
-  print "<link rel=stylesheet type=\"text/css\" href=\"/metaamp/css/metaamp.css\"/>\n";
-  print "<title>metaamp problem</title>\n</head>\n";
-  print "<body>\n<h1>$heading</h1>\n";
-  for my $i (0..$#messages) {
-    print "<p><font color=\"red\">$messages[$i]</font></p>\n";
-  }
-  print "<p>$instruction</p>\n";
-  print "<!-- form><input type=\"button\" value=\"Retry\" style=\"height:2.5em; width:6em\" onClick=\"history.go(-1);return true;\"></form -->\n";
-  print "</body>\n</html>\n";
-  exit;
+    my ($heading, $instruction, @messages) = @_;
+    print "<html>\n<head>\n";
+    print "<link rel=stylesheet type=\"text/css\" href=\"../css/metaamp.css\"/>\n";
+    print "<title>metaamp problem</title>\n</head>\n";
+    print "<body>\n<h1>$heading</h1>\n";
+    for my $i (0..$#messages) {
+	print "<p><font color=\"red\">$messages[$i]</font></p>\n";
+    }
+    print "<p>$instruction</p>\n";
+    print "<!-- form><input type=\"button\" value=\"Retry\" style=\"height:2.5em; width:6em\" onClick=\"history.go(-1);return true;\"></form -->\n";
+    print "</body>\n</html>\n";
+    exit;
 }
 
 # Make a directory and move to it to prepare for writing files in it.
@@ -191,7 +195,7 @@ sub make_and_move_to_upload_dir {
     set_time_strings();
     my $dir = "$ENV{METAAMPHOME}/tmp/$machine_time-$analysis";
     mkdir $dir
-	or notify_internal_error("Can't create upload directory $dir: $!", "Upload directory creation failed");
+	or notify_internal_error("Can't create upload directory $dir: $!", "Upload directory $dir creation failed");
     chmod 0777, $dir;
     chdir $dir;
 }
@@ -201,48 +205,44 @@ sub make_and_move_to_upload_dir {
 # Prints out job submission confirmation HTML, listing all job.
 # information and files received
 sub print_job_received_html {
-  print "<html>\n<head>\n";
-  print "<link rel=stylesheet type=\"text/css\" href=\"/metaamp/css/metaamp.css\"/>\n";
-  print "<title>MetaAmp job received</title>\n</head>\n";
 
-  print "<body>\n";
-  print " <div id=\"outform\">\n";
-  print "<a href=\"/metaamp/index.html\" id=\"logo\">MetaAmp Logo<\/a>\n";
-  print "  <h1>MetaAmp Version 2.0 </h1>\n";
-  print "  <div id=\"sep\"></div>\n";
-  print " <div id=\"result\">\n";
-  print "<p>MetaAmp job has been received:</p>\n";
-  print "<p>Analysis name: $analysis:</p>\n";
-  print "<p>Submitted by $email at $human_time</p>\n";
-  print "<p>Results will be linked to: <a href=\"http://ebg.ucalgary.ca/metaamp/tmp/$machine_time-$analysis/results/index.html\">Result Access Page</a> after the job finished\n\n";
-  print "<p>An email will be sent to you when the analysis is finished.</p>\n";
+    use File::Slurper 'read_text';
+    my $link_str = read_text("$template_dir/result_link.html");
+    $link_str =~ s/METAAMPTYPE/OTU/g;
+    $link_str =~ s/METAAMP_ANALYSISNAME/$analysis/g;
+    $link_str =~ s/METAAMP_MACHINE_TIME/$machine_time/g;
+    $link_str =~ s/METAAMP_USER_EMAIL/$email/g;
+    $link_str =~ s/METAAMP_SUBMIT_TIME/$human_time/g;
+    my $result_url = "$url/tmp/$machine_time\-$analysis/results/index.html";
+    $link_str =~ s/METAAMP_RESULT_URL/$result_url/g;
+    my $debug_url = "$url/tmp/$machine_time\-$analysis/debug.txt";
+       $link_str =~ s/METAAMP_DEBUG_URL/$debug_url/g;
+    $link_str =~ s/METAAMPFASTQXOUNT/$num_seqfiles/g;
+    #binmode(OUT, ":utf8");
+    binmode STDOUT, ":utf8";
+    print $link_str;
+    #close(OUT);
 
-  print "<p>Number of $seqformat files: $num_seqfiles</p>\n";
-  print "</div>\n";
-  print "<div id=\"sep\"></div>\n";
- print "<div id=\"foot\">Problems? Questions? Suggestions? Please contact <a href=\"mailto:xdong\@ucalgary.ca\">Xiaoli Dong</a> or <a HREF=\"mailto:mstrous\@ucalgary.ca\">Marc Strous</a></div>\n";
-
-  print "</div>\n";
-  print "</body>\n</html>\n";
 }
 
 # Catches CGI error.
 # Currently the only known one is the POST size exeeding the limit.
 sub catch_cgi_error {
-  my $error = $query->cgi_error;
-  if ($error) {
-    print_error_web("metaamp job request has not been processed", "Please send email to the metaamp Team giving the error message below:<br>$query->strong($error)", "metaamp server has encountered a problem.");
-  }
+    my $error = $query->cgi_error;
+    if ($error) {
+	print_error_web("metaamp job request has not been processed", "Please send email to the metaamp Team giving the error message below:<br>$query->strong($error)", "metaamp server has encountered a problem.");
+    }
 }
 
 # Saves necessary job information into a text file.
 # The information is used when the results are packed into a subdirectory
 # and the Web page of results is built.
 sub save_job_info {
-  my ($file) = @_;
-  open JOB_INFO, ">$file"
-      or notify_internal_error("Can't open job information file $file to write: $!", "Job information file creation failed");
-  print JOB_INFO "$analysis\n$email\n$human_time\n$machine_time\n";
+    my ($file) = @_;
+    open JOB_INFO, ">$file"
+	or notify_internal_error("Can't open job information file $file to write: $!", "Job information file creation failed");
+    #print JOB_INFO "$analysis\n$email\n$human_time\n$machine_time\n";
+    print JOB_INFO "Job name:$analysis\nEmail:$email\nSubmit human time:$human_time\nSubmit machine time:$machine_time\nCommand:$metaamp_param\n";
 }
 
 sub convert_client_filename {
@@ -285,6 +285,7 @@ sub extract_archive {
 	    if ($base eq "" || $base =~ /^\./) {
 		next;
 	    }
+	    #path=mock_data/, base=rep2_C3_S246_L001_R2_001.fastq, ext=.gz
 	    #print "path=$path, base=$base, ext=$ext<br>";
 	    my $file_safe = safe_filename("$base$ext");
 	    if ($file_safe) {
@@ -297,23 +298,24 @@ sub extract_archive {
 		print_error_web("metaamp has a problem with the submitted data files", "Please ensure your data file names contain only alphanumeric characters, \".\", \"-\", \"_\", and no space.", "Data file \"$base$ext\" in the submitted archive contains unsafe characters.");
 	    }
 
-	    if ($seqformat eq "fastq" && $ext =~ /^\.fastq/) {
+	    #if ($seqformat eq "fastq" && $ext =~ /^\.fastq/) {
+	    if ($seqformat eq "fastq" && $file =~ /\.fastq/) {
 		push @seqfiles, $file_safe;
 		push @fastq_bases, safe_filename($base);
 	    }
-	    elsif($seqformat eq "fasta" && $ext =~ /^\.fna|\.fasta|\.qual/) {
+	    elsif($seqformat eq "fasta" && $file =~ /\.fna|\.fasta|\.qual/) {
                 push @seqfiles, $file_safe;
                 push @fastq_bases, safe_filename($base);
             }
 	    else {
 		if($seqformat eq "fasta"){
 		    print_error_web("Uploaded file extensions are not fasta, fna, qual",
-				    "You selected $seqformat, Please ensure your fasta file extension as \".fasta, fna, qual\"",
+				    "You selected $seqformat, Please ensure your fasta file extension as \".fasta, fasta.gz, fna, fna.gz, qual, qual.gz\"",
 				    "Extracted file $file has unknown extension \"$ext\".");
 		}
 		elsif($seqformat eq "fastq"){
                     print_error_web("Uploaded files are not having fastq extenson",
-				    "You selected $seqformat, Please ensure your fastq file extension as \".fastq\"",
+				    "You selected $seqformat, Please ensure your fastq file extension as \".fastq, .fastq.gz\"",
 				    "Extracted file $file has unknown extension \"$ext\".");
                 }
 	    }
@@ -362,7 +364,7 @@ sub notify_internal_error {
     }
     if (open MAIL, "|/usr/sbin/sendmail -t") {
 	print MAIL "To: $email\n";
-   #print MAIL "Bcc: xdong\@ucalgary.ca\n";
+	#print MAIL "Bcc: xdong\@ucalgary.ca\n";
 	print MAIL "From: metaamp\@ebg.ucalgary.ca\n";
 	print MAIL "Subject: metaamp job $analysis problem\n\n";
 	print MAIL "Dear metaamp user,\n\nmetaamp job $analysis submitted by $email at $human_time had a problem:\n\n$internal_message";
@@ -381,7 +383,7 @@ sub createOligoFile{
     chomp($forward);
     chomp($reverse);
     print STDERR
-    my @fa = split(/\n/, $forward);
+	my @fa = split(/\n/, $forward);
 
     foreach (@fa){
 	next if !/\w/;

@@ -1,0 +1,230 @@
+html, body, h1, form, fieldset, legend{
+	margin: 0;
+	padding: 0;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 20px;
+    padding: 20px;
+    line-height: 150%;
+    background-color:dimgray;
+}
+
+input, textarea{
+    border: 1px solid #CCCCCC;
+    font-size: 20px;
+}
+input[type="text"],input[type="email"], input[type="file"],textarea, input[type="number"]{
+    padding: 5px;
+    width: 350px;
+}
+
+textarea {
+    height: 80px;
+}
+
+#sep {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: url("../images/blueline.gif");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 9px;
+}
+
+
+#outform{
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    //width: 70%;
+    width: 960px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    display:block;
+    overflow:auto;
+    clear:both;
+    //border: 5px solid red;
+}
+
+#logo{
+    background: url("../images/mataamp.png");
+    height: 165px;
+    width: 431px;
+    display: block;
+    text-indent:-9999px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:30px;
+}
+#metaamp {
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 5px;
+    padding: 20px;
+    width: 85%;
+    //border: 5px solid red;
+}
+
+#wrap {
+    padding:5px;
+    text-align:center;
+    display: inline-block;
+    width: 100%;
+
+}
+
+#left_col {
+    float:left;
+    width: 50%;
+    text-align: left;
+    
+}
+#right_col {
+    margin-left: 52%;
+    text-align: left;
+    
+}
+
+td font {font-family: Arial, Helvetica, sans-serif; }
+p {
+
+//margin-left: 20px;
+  //  text-indent: 10px;
+    text-align: left;
+
+}
+pre {
+     margin-left: 20px;
+    text-indent: 10px;
+    text-align: left;
+
+}
+
+
+
+
+#foot {
+    padding:5px;
+    text-align:center;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    //border: 5px solid red;
+    margin-bottom: 20px;
+}
+
+
+
+
+#result{
+    border-radius: 5px;
+    padding: 20px;
+    text-align: left;
+
+}
+.bottom{
+    height: 30px;
+}
+
+#resultwrap{
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    width: 1200px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+
+}
+.qctable{
+    border: 1px solid black;
+    padding: 10px
+}
+colgroup {
+    display: table-column-group;
+}
+
+ul, ol, li  {
+
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+    text-align: left;
+
+}
+#cat{
+    list-style-image: url("http://ebg.ucalgary.ca/metaamp/image/sqorange.gif");
+}
+#filelist{
+    list-style-image: url("http://ebg.ucalgary.ca/metaamp/image/arrow.png");
+}
+#btn {
+  background: #2d0bd9;
+  background-image: -webkit-linear-gradient(top, #2d0bd9, #972bb8);
+  background-image: -moz-linear-gradient(top, #2d0bd9, #972bb8);
+  background-image: -ms-linear-gradient(top, #2d0bd9, #972bb8);
+  background-image: -o-linear-gradient(top, #2d0bd9, #972bb8);
+  background-image: linear-gradient(to bottom, #2d0bd9, #972bb8);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  //font-size: 16px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+#btn:hover {
+  background: #b63cfc;
+  background-image: -webkit-linear-gradient(top, #b63cfc, #5a34d9);
+  background-image: -moz-linear-gradient(top, #b63cfc, #5a34d9);
+  background-image: -ms-linear-gradient(top, #b63cfc, #5a34d9);
+  background-image: -o-linear-gradient(top, #b63cfc, #5a34d9);
+  background-image: linear-gradient(to bottom, #b63cfc, #5a34d9);
+  text-decoration: none;
+}
+
+
+
+pre {
+clear: none;
+}
+#tabs {
+margin-top: 0.5em;
+}
+#tabs-nohdr {
+padding: 0px;
+background: none;
+border-width: 0px;
+//font-size: 14px;
+}
+#tabs-nohdr .ui-tabs-nav {
+padding-left: 0px;
+background: transparent;
+border-width: 0px 0px 1px 0px;
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;
+}
+#tabs-nohdr .ui-tabs-panel {
+border-width: 0px 1px 1px 1px;
+}
+
+ #tr_result {
+
+height:20px;
+
+  }
+#h2left {
+text-align: left;
+}
+
+table.dataTable th,
+table.dataTable td {
+    white-space: nowrap;
+    padding-right: 20px !important;
+}

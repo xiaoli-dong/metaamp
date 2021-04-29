@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <title>Taxonomy distribution summary </title>
+    <link rel=stylesheet type="text/css" href="../css/metaamp.css" title="default metaamp styles" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/jstree.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://rawgit.com/adamjimenez/jstree-table/master/jstreetable.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.5/themes/default/style.min.css" />
+    <link rel="stylesheet" href="../css/style.tree.css">
+    <script type="text/javascript" src="taxon.tree.json"></script>
+    <script>
+      
+      $(document).ready(function(){
+      console.log(mydata);
+      $("#tree").jstree({
+      
+      plugins: ["themes","json","table","sort"],
+      
+      core: {
+      'data': mydata
+      },
+      // configure tree table
+      table: {
+      columns:treecol,
+      resizable: true,
+      height: "400px"
+      
+      }
+      });
+      
+      });
+      
+    </script>
+    <style>
+      
+    </style>
+  </head>
+
+
+  <body>
+    <div id="outform">
+      <div id="outline">
+	<div id="banner" ></div>
+	<div id="title">
+	  <h1>MetaAmp Version 3.0 </h1>
+	</div>
+	<div id="sep"></div>
+	
+	<div id="space"></div>
+
+      <div class="container">
+	<div style="height: 100px;text-align: center;">
+	  <h3>Taxonomic distribuiton hierachical view</h3>
+	  <p style="text-align:center;">(Columns of the tree are sotable)</p> 
+	</div>
+	
+	<div id="tree"></div>
+	<div style="height:100px;"></div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

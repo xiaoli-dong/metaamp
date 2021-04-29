@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta NAME ="Description" CONTENT =" Energy Bioengineering Group bioinformatics tool metaamp accepts fasta, fastq format next generation 16s, 18s rRNA sequences (e.g. 454, Illumina single or paired end ) and clusters them into OTUs, generate taxonoic classification and biodiversity indics of the input community">
+
+    <meta NAME ="Keywords" CONTENT ="Next generation sequencing, 454, MiSeq, Paired end, 16s rRNA, 18s rRNA, OTU, taxonomic classification, clustering, alpha diversity, beta diversity, community comparison, University of Calgary,Geoscience,Energy Bioengineering Group, Xiaoli Dong,Marc Strous">
+
+    <link rel=stylesheet type="text/css" href="css/metaamp.css" title="default metaamp styles"/>
+
+    <title>MetaAmp: Amplicon sequening of conserved marker genes analysis -ASV</title>
+
+    <SCRIPT TYPE="text/javascript" SRC="js/metaamp.js"></SCRIPT>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function () {
+      $('#single-reads').hide();
+      $('#paired-reads').show();
+
+      $('#pair').click(function () {
+      $('#single-reads').hide();
+      $('#paired-reads').show();
+      });
+
+      $('#single').click(function () {
+      $('#paired-reads').hide();
+      $('#single-reads').show();
+      });
+      });
+      function blinker() {
+      $('.blink_me').fadeOut(500);
+      $('.blink_me').fadeIn(500);
+      }
+
+      setInterval(blinker, 1500);
+
+
+    </script>
+    <style>
+      .two_col_input{
+      padding: 5px;
+      width: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="outform">
+      <form id="metaamp" name="metaamp" METHOD ="post" ENCTYPE="multipart/form-data">
+	<div id="outline">
+	  <div id="banner" ></div>
+	  <div id="navcont" style="text-align: right;">
+            <ul id="nav">
+              <li><a href="help.html">Help</a></li>
+	      <li><a href="changelog.html">Changelog</a></li>
+              <li><a href="index.asv.html">ASV Analysis</a></li>
+              <li><a href="index.otu.html">OTU Analysis</a></li>
+              <li><a href="index.html">Home</a></li>
+	    </ul>
+	  </div>
+
+	  <div id="pagetitle">
+	    <h1>MetaAmp Version 3.0 - ASV based amplicon analysis</h1>
+	  </div>
+
+	  <p>MetaAmp is designed to to analyze the amplicon sequening of conserved marker genes (e.g. 16S, 18S rRNA) from complex microbial communities. Its ASV analysis component infers amplicon sequence variants (ASVs) of the input communities using <a href="https://benjjneb.github.io/dada2/">DADA2</a>. It produces alpha and beta diversity based on the inferred ASVs for the the input microbial communities. MetaAmp also assigns taxonomy to each ASV and generates taxonomic profiles. MeteAmp ASV component accepts single-read or paired-end sequencing in <b>fastq format</b> from various sequencing platforms (Not nanopore). </p>
+	  <p>To explore the MetaAmp ASV analysis outputs, please check</p>
+	  <div style="margin-bottom: 30px;">
+	    <a href="demo/demo_asv/index.html" class="demo" target="demo">MetaAmp ASV Analysis Output Demo</a>
+	  </div>
+
+	  <div id="sep"></div>
+
+	  <div id="wrap">
+	    <div id="left_col">Analysis Name:<img src="images/help.jpg" class="help" id="name" onclick="help('nameModal', 'name', 'closeName');"></div>
+	     <div id="nameModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeName">&times;</span>
+		  <p>The analysis name is a required field and only takes <b>letters, numeric digits, and underscores.</b> No spaces are allowed in the analysis name.</p>
+		</div>
+	     </div>
+	    <div id="right_col"> <input type="text" id="analysisname" name="analysisname" placeholder="Enter one-word analysis name" pattern="[A-Za-z0-9_]+" title="Only characters/numbers allowed" required></div>
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Email address:<img src="images/help.jpg" class="help" id="emailinfo" onclick="help('emailinfoModal', 'emailinfo', 'closeEmailinfo');"></div>
+	    <div id="emailinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeEmailinfo">&times;</span>
+		  <p>The email address is a required field. MetaAmp uses the email address to notify user the occuring errors during the analysis and to send the result link to users after the analysis finishes. Please provide a valid email address.</p>
+		</div>
+	    </div>
+	    <div id="right_col"><input type="email" id="email" name="email" placeholder="Enter a valid email address" required></div>
+	  </div>
+	  <!--div id="wrap">
+	    <div id="left_col">Sequence format:</div>
+	    <div id="right_col">
+	      <input type="radio" id="fastq" name="seqformat" value="fastq" checked="checked" >Fastq
+	      &nbsp;&nbsp;<input id="fasta" type="radio" name="seqformat" value="fasta">Fasta
+	    </div>
+
+	  </div -->
+	  <div id="wrap">
+	    <div id="left_col">Sequencing type:</div>
+	    <div id="right_col">
+	      <input type="radio" id="pair" name="seqtype" value="paired" checked="checked">Paired-end
+	      &nbsp;&nbsp;<input id="single" type="radio" name="seqtype" value="single">Single
+	    </div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Upload archived sequence file (demultiplexed):<img src="images/help.jpg" class="help" id="archive" onclick="help('archiveModal', 'archive', 'closeArchive');"></div>
+	     <div id="archiveModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeArchive">&times;</span>
+		  <p>Please check <a href="help.html">Help</a> on how to make sequence archive file</p>
+		</div>
+	     </div>
+	    <div id="right_col"><input type="file" id="seqArchiveFile" name="seqArchiveFile" required/></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Upload mapping file (text format):<img src="images/help.jpg" class="help" id="mapping" onclick="help('mappingModal', 'mapping', 'closeMapping');"></div>
+	    <div id="mappingModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMapping">&times;</span>
+		  <p>Please check <a href="help.html">Help</a> on how to make sequence mapping file</p>
+		</div>
+	    </div>
+	    <div id="right_col"><input type="file" id="mappingFile" name="mappingFile" required/></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Forward amplicon primers (5'->3'): <img src="images/help.jpg" class="help" id="primer" onclick="help('primerModal', 'primer', 'closePrimer');"> </div>
+    <div id="primerModal" class="modal">
+      <div class="modal-content">
+		  <span class="close" id="closePrimer">&times;</span>
+		  <p>To know more, please check <a href="help.html">Help</a></p>
+		</div>
+	    </div>
+	    <div id="right_col"><textarea id="fprimers" name="fprimers" placeholder="Primer can contain IUPAC code" pattern="[acgturymkwsbdhvnACGTURYMKWSBDHVN]+" ></textarea></div>
+	  </div>
+	  <div id="wrap">
+	    <div id="left_col">Reverse amplicon primers (5'->3'):</div>
+	    <div id="right_col"><textarea id="rprimers" name="rprimers" placeholder="Primer can contain IUPAC code" pattern="[acgturymkwsbdhvnACGTURYMKWSBDHVN]+"></textarea></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">Maximum number of differences to the primer sequence:<img src="images/help.jpg" class="help" id="pdiffsinfo" onclick="help('pdiffsinfoModal', 'pdiffsinfo', 'closePdiffsinfo');"></div>
+	    <div id="pdiffsinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closePdiffsinfo">&times;</span>
+		  <p>It defines the allowed differences in the primer region. If the differences in the primer regions greater than this number, the reads will be discarded.</p>
+		</div>
+	    </div>
+	    <div id="right_col"><input type="number" id="pdiffs" name="pdiffs" step="1" value="0" min="0"></div>
+	  </div>
+
+	  <div id="wrap">
+	    <div id="left_col">MaxN:<img src="images/help.jpg" height="20" class="help" id="maxninfo" onclick="help('maxninfoModal', 'maxninfo', 'closeMaxninfo');"></div>
+	    <div id="maxninfoModal" class="modal">
+	      <div class="modal-content">
+		<span class="close" id="closeMaxninfo">&times;</span>
+		<p>After truncation, sequences with more than maxN Ns will be discarded.</p>
+	      </div>
+	    </div>
+	    <div id="right_col"><input type="number" id="maxn" name="maxn" min="0" value="0"></div>
+	  </div>
+
+
+	  <!-- todo; paired end radio button, controll merge option or merge reads stats button -->
+	  <div id="wrap">
+
+	    <br>
+	    <input type="submit" name="asv" value="Get ASVs" onClick="if(validateSubmit() == false){return false;}defineAction('asv');">
+	    &nbsp;&nbsp;<input type="reset" value="Clear Form" />
+
+	  </div>
+
+	  <div id="sep"></div>
+	  <div id="single-reads">
+	    <h3>Single-end reads: quality filtering options </h3>
+	    <div id="wrap">
+	      <div id="left_col">MaxEE:<img src="images/help.jpg" height="20" class="help" id="maxeeinfo" onclick="help('maxeeinfoModal', 'maxeeinfo', 'closeMaxeeinfo');"></div>
+	      <div id="maxeeinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMaxeeinfo">&times;</span>
+		  <p>Reads with higher than maxEE expected errors will be discarded. Expected errors are calculated from the nominal definition of the quality score: EE = sum(10^(-Q/10). To get a better understanding of this option, please read: <a href="https://academic.oup.com/bioinformatics/article/31/21/3476/194979">Error filtering, pair assembly and error correction for next-generation sequencing reads</a></li></p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="maxee" name="maxee" step="0.01" value="1" min="0"></div>
+	    </div>
+
+	    <div id="wrap">
+	      <div id="left_col">TruncQ:<img src="images/help.jpg" height="20" class="help" id="truncqinfo" onclick="help('truncqinfoModal', 'truncqinfo', 'closeTruncqinfo');">
+
+	      </div>
+	      <div id="truncqinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeTruncqinfo">&times;</span>
+		  <p>Truncate reads at the first instance of the quality score less than or equal to the defined truncQ value</p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="truncq" name="truncq" step="1" value="2" min="0"></div>
+	    </div>
+
+
+	    <div id="wrap">
+	      <div id="left_col">TruncLen:<img src="images/help.jpg" height="20" class="help" id="truncLeninfo" onclick="help('truncLeninfoModal', 'truncLeninfo', 'closeTruncLeninfo');"></div>
+	      <div id="truncLeninfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeTruncLeninfo">&times;</span>
+		  <p>Clip the reads after the defined truncLen bases. Reads shorter than the define value are discarded. "0" value means no trunction.</p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="trunclen" name="trunclen" min="100" value="280"></div>
+	    </div>
+
+
+
+
+	    <div id="sep"></div>
+	  </div>
+	  <div id="paired-reads">
+	    <h3>Paired-end reads: quality filtering options </h3>
+
+
+
+	    
+	    <div id="wrap">
+	      <div id="left_col">TruncQ:<img src="images/help.jpg" height="20" class="help" id="truncq" onclick="help('truncqModal', 'truncq', 'closeTruncq');"></div>
+	      <div id="truncqModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeTruncq">&times;</span>
+		  <p>Clip reads at the first instance of the quality score less than or equal to the defined truncQ</p>
+		</div>
+	      </div>
+	      <div id="right_col">
+		Read 1: <input type="number" id="truncq1" name="truncq1" step="1" value="2" min="0"  style="margin-left: 10px; margin-right: 20px; width:100px;">
+		Read 2: <input type="number" id="truncq2" name="truncq2" step="1" value="4" min="0"  style="margin-left: 10px; margin-right: 20px; width:100px;">
+	      </div>
+	    </div>
+
+
+	    <div id="wrap">
+	      <div id="left_col">TruncLen:<img src="images/help.jpg" height="20" class="help" id="truncLenp" onclick="help('truncLenpModal', 'truncLenp', 'closeTruncLenp');"></div>
+	      <div id="truncLenpModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeTruncLenp">&times;</span>
+		  <p>Clip reads  after defined truncLen bases. Reads shorter than this are discarded. "0" means no clipping</p>
+		</div>
+	      </div>
+	      <div id="right_col">
+		Read 1: <input type="number" id="trunclen1" name="trunclen1" min="150" value="280" style="margin-left: 10px; margin-right: 20px; width:100px;">
+		Read 2: <input type="number" id="trunclen2" name="trunclen2" min="150" value="260" style="margin-left: 10px; margin-right: 20px; width:100px;">
+	      </div>
+	    </div>
+
+	    <div id="wrap">
+	      <div id="left_col">MaxEE:<img src="images/help.jpg" height="20" class="help" id="maxeep" onclick="help('maxeepModal', 'maxeep', 'closeMaxeep');"></div>
+	      <div id="maxeepModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMaxeep">&times;</span>
+		  <p>After truncation, reads with higher than maxEE expected errors will be discarded.  Expected errors are calculated from the nominal definition of the quality score: EE = sum(10^(-Q/10))</p>
+		</div>
+	      </div>
+	      <div id="right_col">
+		Read 1: <input type="number" style="margin-left: 10px; margin-right: 20px; width:100px;" id="maxee1" name="maxee1" step="0.01" value="1" min="0">
+		Read 2:<input type="number" style="margin-left: 10px; margin-right: 20px; width:100px;" id="maxee2" name="maxee2" step="0.01" value="1" min="0">
+	      </div>
+	    </div>
+
+	    <h3>Paired-end reads: denoised pair of forward and reverse reads mergering options</h3>
+
+	    <div id="wrap">
+	      <div id="left_col">Minimum length of overlap:<img src="images/help.jpg" class="help" id="overleninfo" onclick="help('overleninfoModal', 'overleninfo', 'closeOverleninfo');"></div>
+	      <div id="overleninfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeOverleninfo">&times;</span>
+		  <p>The minimum overlap range length required for merging DADA2 induced forward and reverse ASVs</p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="overlen" name="minoverlen" min="0" value="12"></div>
+	    </div>
+
+	    <div id="wrap">
+	      <div id="left_col">Maximum number of mismatches in the overlap region:<img src="images/help.jpg" class="help" id="maxdiffsinfo" onclick="help('maxdiffsinfoModal', 'maxdiffsinfo', 'closeMaxdiffsinfo');"></div>
+	      <div id="maxdiffsinfoModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeMaxdiffsinfo">&times;</span>
+		  <p>The maximum mismatches allowed in the overlap region.</p>
+		</div>
+	      </div>
+	      <div id="right_col"><input type="number" id="maxdiffs" name="maxdiffs" min="0" value="0"></div>
+	    </div>
+	    <div id="sep"></div>
+	  </div>
+	</div>
+	<!-- /div -->
+
+	<div id="foot">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a>
+	</div>
+	<div id="counter">
+	  <!-- hitwebcounter Code START -->
+	  Visitors Counter: <a href="http://www.hitwebcounter.com" target="_blank">
+	    <img src="http://hitwebcounter.com/counter/counter.php?page=6496524&style=0027&nbdigits=5&type=page&initCount=1800" border="0" ></a>
+	</div>
+
+
+	<div>
+
+	  <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-56835302-1', 'auto');
+	    ga('send', 'pageview');
+
+	  </script>
+	</div>
+
+      </form>
+
+
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-90098813-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
+
+

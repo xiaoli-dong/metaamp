@@ -1,0 +1,138 @@
+<html lang=”en”>
+  <head>
+    <meta charset="utf-8">
+    <title>MetaAmp Results Page</title>
+    <link rel="stylesheet" href="css/metaamp.css">
+  </head>
+
+  <body>
+    <div id="outform">
+      <div id="outline">
+	<div id="banner" ></div>
+	<div id="navcont" style="text-align: right;">
+          <ul id="nav">
+            <li><a href="help.html">Help</a></li>
+	    <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="index.asv.html">ASV Analysis</a></li>
+            <li><a href="index.otu.html">OTU Analysis</a></li>
+            <li><a href="index.html">Home</a></li>
+	  </ul>
+	</div>
+	<div id="title">
+	  <h1>MetaAmp Changelog </h1>
+	</div>
+
+
+	<div id="pwraper">
+	  <p>We are keeping updating metaamp to keep up with the latest methods and user request. Please check the logs for the new features </p>
+
+	  <h2>MetaAmp version 3.0 update and major bug fixing - 2020-08-20</h2>
+	  <p>
+	    <ul>
+	      <li>In the previous version: Taxonomy distribution summary, otu and taxonomy distribution summary, and otu and taxonomy distribution summary: relative abundance was wrong. It has been fixed </li>
+	    </ul>
+	  </p>
+
+      <h2>MetaAmp version 3.0 update and bug fixing - 2020-04-28</h2>
+           <p>
+                  <ul>
+                              <li>Fixed metaerg asv analysis failure problem when the input sequences are from two different runs</li>
+                                 <li>Fixed the JobInfo.txt missing problem when running metaamp from command line</li>
+                                    <li>Disabled otu.association calculation functions</li>
+                               </ul>
+
+                                             </p>
+
+
+     <h2>MetaAmp version 3.0 update and bug fixing - 2020-03-24</h2>
+     <p>
+       <ul>
+         <li>Fixed email sending failure problem</li>
+   <li>In the result page that metaamp generated right after the job submission, the "Number of fastq file" was constantly 48. It has been fixed</li>
+       </ul>
+
+     </p>
+
+
+
+
+	  <h2>MetaAmp version 3.0 is out - 2020-03-12</h2>
+	  <p>
+	    <ul>
+	      <li>Integrated <a href="https://benjjneb.github.io/dada2/index.html">DADA2 ASV infering method</a> into MetaAmp pipeline, which enables users to analyze their data using OTU-based method or ASV-based method online. </li>
+	      <li>In the MetaAmp ASV analysis component, the alpha-diversity, beta-diversity generation, and taxonomy assignment are all achived using <a href="https://www.mothur.org/wiki/Main_Page">Mothur</a>.
+	      <li>MetaAmp can take the either compressed (gz) or uncompressed sequence files included in the sequence archive.</li>
+	      <li>Added more interactive visualizations such as heatmap and bubble plot for the multidimensional data summary table</li>
+	      <li>Updated interactive Alpha diversity index visualization: added 95% confidence interval in the visualization</li>
+              <li>Updated the taxonomic reference database from <a href="https://www.mothur.org/wiki/Silva_reference_files">Silva version 132 to 138</a></li>
+	      <li>Added a lot interactive popup information boxes on the html input interface</li>
+	    </ul>
+
+	  </p>
+
+	  <h2>Last updated: 2018-10-10</h2>
+	  <p>
+	    <ul>
+              <li>Upgrade the taxonomic classification database from silva version 123 to 132</li>
+	    </ul>
+	  </p>
+	  <h2>MetaAmp 2.0 is out - 2017-01-05</h2>
+
+
+	  <p>
+	    <ul>
+	      <li>Added "Marker gene type" option in the interface. User can upload either ssu rRNA gene or other genes</li>
+	      <li>Added "Similarity cutoff" options for the otu clustering threshold. the default is 0.97</li>
+	      <li>Deleted "Truncate the reads at the first phred score" options </li>
+	      <li>Added "Hypothesis Testing" results to the analysis results, the current available hypothesis tests are parsimony, unifrac.weighted, unifrac.unweighted, AMOVA, HOMOVA</li>
+	      <li>re-organized the metaamp analyis results page</li>
+	    </ul>
+	  </p>
+
+	  <h2>MetaAmp 1.3 is out - 2016-09-14</h2>
+	  <p>
+	    <ul>
+	      <li>Fixed the subsampleing bugs. In the previous version, after sub-sampling, otu ids in the newly generated shared file cannot be related back to the original otu ids in the original shared file without subsampling.</li>
+
+	    </ul>
+	  </p>
+
+	  <h2>Last updated: 2016-07-29</h2>
+	  <p>
+	    <ul>
+	      <li>Make the excluding of the chloroplast and mitochondria 16s rRNA sequences as one option dring the analysis. The default options is to keep them
+	      <li>Upgrade the taxonomic classification database from silva version 119 to 123
+	    </ul>
+	  </p>
+
+	  <h2>Last updated: 2016-05-26</h2>
+	  <p>	<ul>
+	      <li>Fixed most of the Eukaryota only be classified to phylum level issues</li>
+	    </ul>
+	  </p>
+
+
+	  <h2>MetaAmp1.2 is out - 2015-07-02</h2>
+	  <p><ul>
+	      <li>Provided subsampling/normalized alpha, beta diversity output. Very often, each sample has different number of sequences. Sub-sampling is to randomly draw the same number of sequences from each sample.</li>
+	      <li>Provided more informative error message when the job failed</li>
+	  </ul></p>
+
+	  <h2>MetaAmp1.1 is out - 2015-03-26</h2>
+	  <p> <ul>
+	      <li>Can accept fasta format sequences without quality files</li>
+	      <li>The orientation of the reverse primer is from 5' to 3' instead of reverse compliment of the reverse primer</li>
+	      <li>Fixed the rarefaction curve visualization bugs</li>
+	      <li>Added system error notification method. when a job fails, MetaAmp will send user and administrator messages</li>
+	      <li>Forked a new process for doing system call and closed STDOUT and other filehandles and return to user. </li>
+	      <li>Removed "Trim amplicon to a fixed length:" option for paired-edn reads quality filtering</li>
+	      <li>Removed "Truncate the reads at the first phred score" field for the paired end reads merging </li>
+	    </ul>
+	  </p>
+	</div>
+	<div id="sep"></div>
+	<div id="foot" align="center">Problems? Questions? Suggestions? Please contact <a href="mailto:xdong@ucalgary.ca">Xiaoli Dong</a> or <a HREF="mailto:mstrous@ucalgary.ca">Marc Strous</a><br><a href="http://www.ucalgary.ca/ebg/">Energy Bioengineering Group</a> in <a href="http://geoscience.ucalgary.ca/">Department of Geoscience</a> at <a href="http://www.ucalgary.ca">Univeristy of Calgary</a></div>
+
+      </div>
+    </div>
+</html>

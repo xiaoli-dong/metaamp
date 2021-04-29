@@ -203,8 +203,8 @@ close(JSON);
 sub calc_qvalue{
     
     my ($assoFile, $total_test, $sig) = @_;
-    my ($prefix) = $assoFile =~ /(^\S+?)\.otu.corr/;
-    open(CORRECT, ">$prefix.qvalue.otu.corr");
+    my ($prefix) = $assoFile =~ /(^\S+?).corr/;
+    open(CORRECT, ">$prefix.qvalue.corr");
     open(ASSO, $assoFile) or die "Could not open $assoFile to read, $!\n";
     my %matrix = ();
     my $header_line = "";
@@ -236,5 +236,5 @@ sub calc_qvalue{
 	print CORRECT "$key\t$rank\t$qvalue\n";
     }
     close(CORRECT);
-    return "$prefix.qvalue.otu.corr";
+    return "$prefix.qvalue.corr";
 }

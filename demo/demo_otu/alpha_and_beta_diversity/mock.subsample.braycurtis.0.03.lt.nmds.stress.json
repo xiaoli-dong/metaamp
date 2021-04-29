@@ -1,0 +1,18 @@
+stresstablecol = [
+  {"title": "Dimension", "data": "Dimension"},
+  {"title": "Iter", "data": "Iter"},
+  {"title": "Stress", "data": "Stress"},
+  {"title": "Rsq", "data": "Rsq"}
+];
+stressdata = [
+  {"Dimension": "2", "Iter": "1", "Stress": "0.073945", "Rsq": "0.986142"},
+  {"Dimension": "2", "Iter": "2", "Stress": "0.072671", "Rsq": "0.986752"},
+  {"Dimension": "2", "Iter": "3", "Stress": "0.076888", "Rsq": "0.985020"},
+  {"Dimension": "2", "Iter": "4", "Stress": "0.072671", "Rsq": "0.986752"},
+  {"Dimension": "2", "Iter": "5", "Stress": "0.068376", "Rsq": "0.988778"},
+  {"Dimension": "2", "Iter": "6", "Stress": "0.073307", "Rsq": "0.986552"},
+  {"Dimension": "2", "Iter": "7", "Stress": "0.069428", "Rsq": "0.988344"},
+  {"Dimension": "2", "Iter": "8", "Stress": "0.075086", "Rsq": "0.985679"},
+  {"Dimension": "2", "Iter": "9", "Stress": "0.068376", "Rsq": "0.988778"},
+  {"Dimension": "2", "Iter": "10", "Stress": "0.068667", "Rsq": "0.988679"}
+];
