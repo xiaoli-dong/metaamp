@@ -7,7 +7,9 @@ A MetaAmp analysis output demo page can be found at: https://xiaoli-dong.github.
 
 MetaAmp can also be run through command line, here is the example command:
 
-metaamp.pl -map your_mapping_file -an your_analysis_name -seqtype paired -seqformat fastq -s 0.97 -minoverlen 50 -maxdiffs 0  -trunclen 350 -maxee 1 -oligos oligos.txt -pdiffs 0 -email your_email@gmail.com
+> metaamp.pl -map your_mapping_file -an your_analysis_name -seqtype paired -seqformat fastq -s 0.97 -minoverlen 50 -maxdiffs 0  -trunclen 350 -maxee 1 -oligos oligos.txt -pdiffs 0 -email your_email@gmail.com
+
+> metaamp.dada2.paired.pl -map mapping.txt -an analysis_name -seqtype paired -oligos oligos.txt -pdiffs 0 -email your_valid_email_address -maxN 0  -maxeeF 1 -maxeeR 1 -trunclenF 280 -trunclenR 260  -truncqF 2 -truncqR 4 -minoverlen 12 -maxdiffs 0
 
 # Required perl modules
 MetaErg requires Perl 5.6.0 or higher and runs on Linux platforms. Besides the perl core modules, it also requires the following perl modules to be installed:
